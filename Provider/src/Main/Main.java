@@ -1,6 +1,5 @@
-/**
- * Created by mrAdmin on 21.05.2017.
- */
+package Main;
+
 public class Main {
     public static void main(String[] args) {
 

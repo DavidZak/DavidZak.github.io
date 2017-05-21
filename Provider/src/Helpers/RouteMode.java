@@ -1,0 +1,7 @@
+package Helpers;
+
+public enum RouteMode {
+    ROUTE_WITH_MINIMAL_COST,
+    ROUTE_WITH_MINIMAL_TIME_DELAY,
+    ROUTE_WITH_MINIMAL_ELEMENTS_COUNT
+}
