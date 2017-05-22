@@ -46,28 +46,28 @@ public class NetworkTest {
     }
 
     public Route getRouteByIDWithMode(IDRouteProvider provider, int firstID, int secondID, Network network, RouteMode mode) throws RouteNotFoundException {
-       List<Route> routes=getRoutesByID(provider,firstID,secondID,network);
-       if (mode==RouteMode.ROUTE_WITH_MINIMAL_COST){
+        List<Route> routes = getRoutesByID(provider, firstID, secondID, network);
+        if (mode == RouteMode.ROUTE_WITH_MINIMAL_COST) {
             return null;
-       }
-       if (mode==RouteMode.ROUTE_WITH_MINIMAL_TIME_DELAY){
+        }
+        if (mode == RouteMode.ROUTE_WITH_MINIMAL_TIME_DELAY) {
             return null;
-       }
-       if (mode==RouteMode.ROUTE_WITH_MINIMAL_ELEMENTS_COUNT){
+        }
+        if (mode == RouteMode.ROUTE_WITH_MINIMAL_ELEMENTS_COUNT) {
             return null;
-       }
-       return null;
+        }
+        return null;
     }
 
     public Route getRouteByIPWithMode(IPRouteProvider provider, IPAdress firstIP, IPAdress secondIP, Network network, RouteMode mode) throws RouteNotFoundException {
-        List<Route> routes=getRoutesByIP(provider,firstIP,secondIP,network);
-        if (mode==RouteMode.ROUTE_WITH_MINIMAL_COST){
+        List<Route> routes = getRoutesByIP(provider, firstIP, secondIP, network);
+        if (mode == RouteMode.ROUTE_WITH_MINIMAL_COST) {
             return null;
         }
-        if (mode==RouteMode.ROUTE_WITH_MINIMAL_TIME_DELAY){
+        if (mode == RouteMode.ROUTE_WITH_MINIMAL_TIME_DELAY) {
             return null;
         }
-        if (mode==RouteMode.ROUTE_WITH_MINIMAL_ELEMENTS_COUNT){
+        if (mode == RouteMode.ROUTE_WITH_MINIMAL_ELEMENTS_COUNT) {
             return null;
         }
         return null;
