@@ -1,10 +1,30 @@
 package Network;
-import PathElements.PathElement;
+import Helpers.ProjectValuesGenerator;
+import PathElements.Interfaces.PathElement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Network {
-    public List<PathElement> getPathElements(){
-        return new ArrayList<>();
+
+    private List<PathElement> pathElements;
+    private String networkName;
+
+    public List<PathElement> getPathElements() {
+        return pathElements;
+    }
+
+    public String getNetworkName() {
+        return networkName;
+    }
+
+    public Network() {
+        this.networkName = ProjectValuesGenerator.generateString();
+        System.out.println(this.networkName);
+        this.pathElements = new ArrayList<>();
+    }
+
+    public Network(String networkName, List<PathElement> pathElements) {
+        this.networkName = networkName;
+        this.pathElements = pathElements;
     }
 }
