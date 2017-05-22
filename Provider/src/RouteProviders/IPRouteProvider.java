@@ -4,14 +4,17 @@ import Helpers.IPAdress;
 import Helpers.Route;
 import Helpers.RouteNotFoundException;
 import Network.Network;
+import PathElements.Interfaces.PathElement;
 
-public class IPRouteProvider implements RouteProvider {
+import java.util.List;
+
+public class IPRouteProvider extends IDRouteProvider {
     @Override
-    public Route getRoute(int firstID, int secondID, Network network) throws RouteNotFoundException {
-        return new IDRouteProvider().getRoute(firstID,secondID,network);
+    public List<Route> getRoutes(int firstID, int secondID, Network network) throws RouteNotFoundException {
+        return null;
     }
 
-    public Route getRouteByIP(IPAdress firstIP, IPAdress secondIP, Network network) throws RouteNotFoundException {
+    public List<Route> getRoutes(IPAdress firstIP, IPAdress secondIP, Network network) throws RouteNotFoundException {
         return null;
     }
 }

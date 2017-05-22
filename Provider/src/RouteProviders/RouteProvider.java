@@ -1,9 +1,12 @@
 package RouteProviders;
 
+import Helpers.IPAdress;
 import Helpers.Route;
 import Helpers.RouteNotFoundException;
 import Network.Network;
 
+import java.util.List;
+
 public interface RouteProvider {
-    public Route getRoute(int firstID, int secondID, Network network) throws RouteNotFoundException;
+    public List<Route> getRoutes(int firstID, int secondID, Network network) throws RouteNotFoundException;
 }
