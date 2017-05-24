@@ -13,8 +13,16 @@ public class Network {
         return pathElements;
     }
 
+    public void setPathElements(List<PathElement> pathElements) {
+        this.pathElements = pathElements;
+    }
+
     public String getNetworkName() {
         return networkName;
+    }
+
+    public void setNetworkName(String networkName) {
+        this.networkName = networkName;
     }
 
     public Network() {

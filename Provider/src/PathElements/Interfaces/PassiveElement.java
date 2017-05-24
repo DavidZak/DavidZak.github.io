@@ -1,4 +1,4 @@
 package PathElements.Interfaces;
 
-public interface PassiveElement extends PathElement {
+public class PassiveElement extends PathElement {
 }
