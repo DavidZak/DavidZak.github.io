@@ -1,0 +1,30 @@
+package NetworkTest;
+
+import Helpers.IPAdress;
+import Helpers.Route;
+import Helpers.RouteNotFoundException;
+import Network.Network;
+import RouteProviders.Interfaces.RouteProvider;
+
+import java.util.List;
+
+public class NetworkFacade {
+
+    private List<Network> networks;
+
+    public List<Network> getNetworks() {
+        return networks;
+    }
+
+    public NetworkFacade(List<Network> networks) {
+        this.networks = networks;
+    }
+
+    public Route getRouteByID(RouteProvider provider, int firstID, int secondID, Network network) throws RouteNotFoundException {
+        return provider.getRouteByID(firstID, secondID, network);
+    }
+
+    public Route getRouteByIP(RouteProvider provider, IPAdress firstIP, IPAdress secondIP, Network network) throws RouteNotFoundException {
+        return provider.getRouteByIP(firstIP, secondIP, network);
+    }
+}

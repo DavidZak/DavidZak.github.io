@@ -1,14 +1,11 @@
 package Main;
 
-import Helpers.RouteNotFoundException;
 import Network.Network;
 import PathElements.Classes.Switch;
 import PathElements.Interfaces.PathElement;
-import RouteProviders.IDRouteProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
 public class Main {
@@ -64,16 +61,6 @@ public class Main {
         pathElements.add(switchElement4);
         network.setPathElements(pathElements);
 
-        IDRouteProvider provider=new IDRouteProvider();
-        try {
 
-            Set<PathElement> elements1 = provider.bfs(1,3,network);
-            Set<PathElement> elements2 = provider.dfs(1,3,network);
-            if (elements1.size()<elements2.size())
-                System.out.println(elements1);
-            System.out.println(elements2);
-        } catch (RouteNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }

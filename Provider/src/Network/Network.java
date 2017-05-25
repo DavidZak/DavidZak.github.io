@@ -10,11 +10,11 @@ public class Network {
     private String networkName;
     private List<PathElement> pathElements;
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setID(int id) {
         this.id = id;
     }
 
@@ -43,5 +43,28 @@ public class Network {
     public Network(String networkName, List<PathElement> pathElements) {
         this.networkName = networkName;
         this.pathElements = pathElements;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + getID();
+        result = prime * result + (getNetworkName() == null ? 0 : getNetworkName().hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Network other = (Network) obj;
+        if (getID() != other.getID() || getNetworkName() != other.networkName)
+            return false;
+        return true;
     }
 }

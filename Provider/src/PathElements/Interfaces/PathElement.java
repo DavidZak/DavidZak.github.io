@@ -14,55 +14,55 @@ public abstract class PathElement implements Comparable {
         return timeDelay;
     }
 
-    public void setTimeDelay(double timeDelay){
-        this.timeDelay=timeDelay;
+    public void setTimeDelay(double timeDelay) {
+        this.timeDelay = timeDelay;
     }
 
     public double getCost() {
         return cost;
     }
 
-    public void setCost(double cost){
-        this.cost=cost;
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 
     public List<PathElement> getConnections() {
         return connections;
     }
 
-    public void setConnections(List<PathElement> connections){
-        this.connections=connections;
+    public void setConnections(List<PathElement> connections) {
+        this.connections = connections;
     }
 
     public int getID() {
         return ID;
     }
 
-    public void setID(int id){
-        this.ID=id;
+    public void setID(int id) {
+        this.ID = id;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description){
-        this.description=description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public int compareTo(Object o) {
-        PathElement element=(PathElement)o;
-        if (this.getID()>element.getID())
+        PathElement element = (PathElement) o;
+        if (this.getID() > element.getID())
             return 1;
-        if (this.getID()<element.getID())
+        if (this.getID() < element.getID())
             return -1;
         return 0;
     }
 
     @Override
     public String toString() {
-        return "#"+getID();
+        return "#" + getID();
     }
 
     @Override
