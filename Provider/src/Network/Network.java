@@ -6,15 +6,16 @@ import java.util.List;
 
 public class Network {
 
-    private List<PathElement> pathElements;
+    private int id;
     private String networkName;
+    private List<PathElement> pathElements;
 
-    public List<PathElement> getPathElements() {
-        return pathElements;
+    public int getId() {
+        return id;
     }
 
-    public void setPathElements(List<PathElement> pathElements) {
-        this.pathElements = pathElements;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNetworkName() {
@@ -23,6 +24,14 @@ public class Network {
 
     public void setNetworkName(String networkName) {
         this.networkName = networkName;
+    }
+
+    public List<PathElement> getPathElements() {
+        return pathElements;
+    }
+
+    public void setPathElements(List<PathElement> pathElements) {
+        this.pathElements = pathElements;
     }
 
     public Network() {

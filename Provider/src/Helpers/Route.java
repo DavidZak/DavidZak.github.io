@@ -3,12 +3,11 @@ package Helpers;
 import PathElements.Interfaces.PathElement;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class Route {
-    private List<PathElement> pathElementsInRoute;
+    private LinkedList<PathElement> pathElementsInRoute;
 
-    public List<PathElement> getPathElementsInRoute() {
+    public LinkedList<PathElement> getPathElementsInRoute() {
         return pathElementsInRoute;
     }
 
@@ -16,7 +15,7 @@ public class Route {
         this.pathElementsInRoute = new LinkedList<>();
     }
 
-    public Route(List<PathElement> pathElements){
+    public Route(LinkedList<PathElement> pathElements){
         this.pathElementsInRoute = pathElements;
     }
 }

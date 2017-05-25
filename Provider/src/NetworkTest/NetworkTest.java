@@ -7,7 +7,6 @@ import Helpers.RouteNotFoundException;
 import Network.Network;
 import RouteProviders.IDRouteProvider;
 import RouteProviders.IPRouteProvider;
-import RouteProviders.RouteProvider;
 
 import java.util.List;
 
@@ -33,14 +32,14 @@ public class NetworkTest {
 
     public List<Route> getRoutesByID(IDRouteProvider provider, int firstID, int secondID, Network network) throws RouteNotFoundException {
         if (getNetworks().contains(network)) {
-            return provider.getRoutes(firstID, secondID, network);
+            //return provider.getRoute(firstID, secondID, network);
         }
         return null;
     }
 
     public List<Route> getRoutesByIP(IPRouteProvider provider, IPAdress firstIP, IPAdress secondIP, Network network) throws RouteNotFoundException {
         if (getNetworks().contains(network)) {
-            return provider.getRoutes(firstIP, secondIP, network);
+            //return provider.getRoute(firstIP, secondIP, network);
         }
         return null;
     }

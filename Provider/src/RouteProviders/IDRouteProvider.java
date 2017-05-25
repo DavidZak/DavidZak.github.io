@@ -1,43 +1,90 @@
 package RouteProviders;
 
-import Helpers.IPAdress;
-import Helpers.Route;
 import Helpers.RouteNotFoundException;
 import Network.Network;
 import PathElements.Interfaces.PathElement;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class IDRouteProvider implements RouteProvider {
-
-    public List<PathElement> addPathElementToRoute(List<PathElement> elements, PathElement element){
-        elements.add(element);
-        return elements;
+    @Override
+    public List<PathElement> getRoute(int firstID, int secondID, Network network) throws RouteNotFoundException {
+        return null;
     }
 
-    @Override
-    public List<Route> getRoutes(int firstID, int secondID, Network network) throws RouteNotFoundException {
+    public void fordBellman(int firstID, Network network){
 
-        Route route=new Route();
+        int size=network.getPathElements().size();
+        int dist[] = new int[size];
+        for (int i=0;i<dist.length;i++){
+            dist[i]=228;
+        }
+        dist[firstID]=0;
+    }
 
-        PathElement tempElement = null;
+    public Set<PathElement> bfs(int firstID, int secondID, Network network) throws RouteNotFoundException {
+        PriorityQueue<PathElement> queue=new PriorityQueue<>();
+        Set<PathElement> pathElements=new LinkedHashSet<>();
 
-        for (PathElement element: network.getPathElements()){
-            if (element.getID()==firstID){
-               tempElement=element;
-               addPathElementToRoute(route.getPathElementsInRoute(),element);
-               while(tempElement.getID()!=secondID){
-                   //for (int i=0;i<tempElement.getConnections().size();i++){
-                       tempElement=tempElement.getConnections().get(1);
-                       System.out.println(route.getPathElementsInRoute().size());
-                       addPathElementToRoute(route.getPathElementsInRoute(),tempElement);
-                       System.out.println(tempElement.getID());
-                   //}
-               }
-               return new ArrayList<>();
+        for (PathElement element:network.getPathElements()) {
+            if (element.getID() == firstID && !pathElements.contains(element)) {
+                queue.add(element);
+                pathElements.add(element);
+                while (!queue.isEmpty()) {
+                    System.out.println("queue: "+queue);
+                    PathElement elem = queue.poll();
+                    if (elem.getID() == secondID) {
+                        System.out.println("path Elements: " + pathElements);
+                        return pathElements;
+                    }
+                    for (PathElement pathElement : elem.getConnections()) {
+                        if (!pathElements.contains(pathElement)) {
+                            queue.add(pathElement);
+                            pathElements.add(pathElement);
+                        }
+                        if (pathElement.getID() == secondID) {
+                            System.out.println("path Elements: " + pathElements);
+                            return pathElements;
+                        }
+                    }
+                }
             }
+            System.out.println("route not found");
+            System.out.println("pathElems: " + pathElements);
+            return pathElements;
         }
         return null;
+    }
+
+    public Set<PathElement> dfs(int firstID, int secondID, Network network) throws RouteNotFoundException {
+        Set<PathElement> pathElements=new LinkedHashSet<>();
+        Stack<PathElement> stack=new Stack<>();
+
+        for (PathElement element:network.getPathElements()) {
+            if (element.getID() == firstID && !pathElements.contains(element)) {
+                stack.push(element);
+                pathElements.add(element);
+                while (!stack.empty()) {
+                    System.out.println("stack: "+stack);
+                    PathElement elem=stack.pop();
+                    if (elem.getID() == secondID) {
+                        System.out.println("dfs pathElemsss: " + pathElements);
+                        return pathElements;
+                    }
+                    for (PathElement pathElement : elem.getConnections()) {
+                        if (!pathElements.contains(pathElement)) {
+                            stack.push(pathElement);
+                            pathElements.add(pathElement);
+                        }
+                        if (pathElement.getID() == secondID) {
+                            System.out.println("path Elements: " + pathElements);
+                            return pathElements;
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("dfs pathElems: " + pathElements);
+        return pathElements;
     }
 }
