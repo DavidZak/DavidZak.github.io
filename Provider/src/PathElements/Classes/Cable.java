@@ -1,9 +1,6 @@
 package PathElements.Classes;
 
-import PathElements.Interfaces.PassiveElement;
-import PathElements.Interfaces.PathElement;
-
-import java.util.List;
+import PathElements.AbstractClasses.PassiveElement;
 
 public class Cable extends PassiveElement {
 

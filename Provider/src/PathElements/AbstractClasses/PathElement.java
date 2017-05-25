@@ -1,4 +1,4 @@
-package PathElements.Interfaces;
+package PathElements.AbstractClasses;
 
 import java.util.List;
 

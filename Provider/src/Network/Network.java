@@ -1,6 +1,6 @@
 package Network;
 import Helpers.ProjectValuesGenerator;
-import PathElements.Interfaces.PathElement;
+import PathElements.AbstractClasses.PathElement;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,10 +1,6 @@
 package PathElements.Classes;
 
-import Helpers.IPAdress;
-import PathElements.Interfaces.ActiveElement;
-import PathElements.Interfaces.PathElement;
-
-import java.util.List;
+import PathElements.AbstractClasses.ActiveElement;
 
 public class Switch extends ActiveElement {
 

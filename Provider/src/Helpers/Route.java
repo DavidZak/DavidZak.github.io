@@ -1,9 +1,8 @@
 package Helpers;
 
-import PathElements.Interfaces.PathElement;
+import PathElements.AbstractClasses.PathElement;
 
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.Set;
 
 public class Route {

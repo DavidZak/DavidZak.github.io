@@ -1,4 +1,4 @@
-package NetworkTest;
+package ApplicationFacade;
 
 import Helpers.IPAdress;
 import Helpers.Route;
@@ -8,7 +8,7 @@ import RouteProviders.Interfaces.RouteProvider;
 
 import java.util.List;
 
-public class NetworkFacade {
+public class ApplicationFacade {
 
     private List<Network> networks;
 
@@ -16,8 +16,15 @@ public class NetworkFacade {
         return networks;
     }
 
-    public NetworkFacade(List<Network> networks) {
-        this.networks = networks;
+    private static ApplicationFacade instance;
+    private ApplicationFacade() {
+
+    }
+
+    public static ApplicationFacade getInstance() {
+        if (instance==null)
+            instance=new ApplicationFacade();
+        return instance;
     }
 
     public Route getRouteByID(RouteProvider provider, int firstID, int secondID, Network network) throws RouteNotFoundException {

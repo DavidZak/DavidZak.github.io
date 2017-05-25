@@ -1,4 +1,4 @@
-package PathElements.Interfaces;
+package PathElements.AbstractClasses;
 import Helpers.IPAdress;
 
 public class ActiveElement extends PathElement {
