@@ -1,12 +1,18 @@
 package RouteProviders.Classes;
 
 import Helpers.IPAdress;
+import Helpers.ProjectsStringsContainer;
 import Helpers.Route;
 import Helpers.Exceptions.RouteNotFoundException;
 import Network.Network;
 import RouteProviders.Interfaces.RouteProvider;
 
 public class MinimalCostRouteProvider implements RouteProvider {
+    @Override
+    public String getName() {
+        return ProjectsStringsContainer.MINIMAL_COST_ROUTE_PROVIDER_NAME;
+    }
+
     @Override
     public Route getRouteByID(int firstID, int secondID, Network network) throws RouteNotFoundException {
         return null;

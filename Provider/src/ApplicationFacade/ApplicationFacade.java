@@ -27,11 +27,11 @@ public class ApplicationFacade {
         return instance;
     }
 
-    public Route getRouteByID(RouteProvider provider, int firstID, int secondID, Network network) throws RouteNotFoundException {
+    public Route getRouteByID(Network network, RouteProvider provider, int firstID, int secondID) throws RouteNotFoundException {
         return provider.getRouteByID(firstID, secondID, network);
     }
 
-    public Route getRouteByIP(RouteProvider provider, IPAdress firstIP, IPAdress secondIP, Network network) throws RouteNotFoundException {
+    public Route getRouteByIP(Network network, RouteProvider provider, IPAdress firstIP, IPAdress secondIP) throws RouteNotFoundException {
         return provider.getRouteByIP(firstIP, secondIP, network);
     }
 }

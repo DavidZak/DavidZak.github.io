@@ -32,6 +32,6 @@ public class UIFacade {
     }
 
     public void executeCommand(String command){
-        System.out.println(new CommandParser(command));
+        System.out.println(new CommandParser().parseString(command));
     }
 }
