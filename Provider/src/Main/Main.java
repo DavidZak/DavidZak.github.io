@@ -12,7 +12,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        UIFacade.getInstance().executeCommand("route 1 3 net cost");
+        UIFacade.getInstance().readInput();
 
     }
 }

@@ -2,7 +2,7 @@ package RouteProviders.Classes;
 
 import Helpers.IPAdress;
 import Helpers.Route;
-import Helpers.RouteNotFoundException;
+import Helpers.Exceptions.RouteNotFoundException;
 import Network.Network;
 import RouteProviders.Interfaces.RouteProvider;
 

@@ -1,6 +1,8 @@
-package UIFacade;
+package UIFacade.CommandParser;
 
-import javax.print.DocFlavor;
+import UIFacade.CommandPattern.FindRouteByIDCommand;
+import UIFacade.CommandPattern.FindRouteByIPCommand;
+import UIFacade.UIFacade;
 
 public class CommandParser {
     private String stringToParse;
