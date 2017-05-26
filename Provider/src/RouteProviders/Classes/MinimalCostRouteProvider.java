@@ -8,9 +8,15 @@ import Network.Network;
 import RouteProviders.Interfaces.RouteProvider;
 
 public class MinimalCostRouteProvider implements RouteProvider {
-    @Override
+
+    String name;
+
+    public MinimalCostRouteProvider(String name){
+        this.name=name;
+    }
+
     public String getName() {
-        return ProjectsStringsContainer.MINIMAL_COST_ROUTE_PROVIDER_NAME;
+        return name;
     }
 
     @Override

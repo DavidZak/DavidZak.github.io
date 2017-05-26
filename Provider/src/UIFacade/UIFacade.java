@@ -1,6 +1,8 @@
 package UIFacade;
 
+import Helpers.Exceptions.RouteNotFoundException;
 import UIFacade.CommandParser.CommandParser;
+import UIFacade.CommandPattern.FindRouteWithMinimalCostCommand;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +21,7 @@ public class UIFacade {
         return instance;
     }
 
-    public void readInput() {
+    public void readInput() throws RouteNotFoundException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String inputString = null;
         try {
@@ -31,7 +33,7 @@ public class UIFacade {
         executeCommand(inputString);
     }
 
-    public void executeCommand(String command){
-        System.out.println(new CommandParser().parseString(command));
+    public void executeCommand(String command) throws RouteNotFoundException {
+        new CommandParser().parseString(command);
     }
 }

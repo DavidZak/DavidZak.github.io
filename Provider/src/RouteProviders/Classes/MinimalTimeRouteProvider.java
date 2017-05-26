@@ -8,9 +8,15 @@ import Network.Network;
 import RouteProviders.Interfaces.RouteProvider;
 
 public class MinimalTimeRouteProvider implements RouteProvider {
-    @Override
+
+    String name;
+
     public String getName() {
-        return ProjectsStringsContainer.MINIMAL_TIME_ROUTE_PROVIDER_NAME;
+        return name;
+    }
+
+    public MinimalTimeRouteProvider(String name){
+
     }
 
     @Override

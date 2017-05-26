@@ -9,9 +9,14 @@ import RouteProviders.Interfaces.RouteProvider;
 
 public class MinimalElementsRouteProvider implements RouteProvider {
 
-    @Override
+    String name;
+
     public String getName() {
         return ProjectsStringsContainer.MINIMAL_COUNT_ROUTE_PROVIDER_NAME;
+    }
+
+    public MinimalElementsRouteProvider(String name){
+        this.name=name;
     }
 
     @Override

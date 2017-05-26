@@ -40,6 +40,11 @@ public class Network {
         this.pathElements = new ArrayList<>();
     }
 
+    public Network(String networkName){
+        this.networkName=networkName;
+        this.pathElements=new ArrayList<>();
+    }
+
     public Network(String networkName, List<PathElement> pathElements) {
         this.networkName = networkName;
         this.pathElements = pathElements;
