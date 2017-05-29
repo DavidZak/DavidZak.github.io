@@ -1,5 +1,6 @@
 package Main;
 
+import Helpers.ConnectionData;
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.PathFinderHelper;
 import Network.Network;
@@ -27,23 +28,23 @@ public class Main {
         pathElement4.setID(4);
         pathElement5.setID(5);
 
-        List<PathElement> pathElements1=new ArrayList<>();
-        List<PathElement> pathElements2=new ArrayList<>();
-        List<PathElement> pathElements3=new ArrayList<>();
-        List<PathElement> pathElements4=new ArrayList<>();
-        List<PathElement> pathElements5=new ArrayList<>();
+        List<ConnectionData> pathElements1=new ArrayList<>();
+        List<ConnectionData> pathElements3=new ArrayList<>();
+        List<ConnectionData> pathElements2=new ArrayList<>();
+        List<ConnectionData> pathElements4=new ArrayList<>();
+        List<ConnectionData> pathElements5=new ArrayList<>();
 
-        pathElements1.add(pathElement2);
-        pathElements1.add(pathElement3);
+        pathElements1.add(new ConnectionData(pathElement2,0,0));
+        pathElements1.add(new ConnectionData(pathElement3,0,0));
 
-        pathElements2.add(pathElement3);
-        pathElements2.add(pathElement5);
+        pathElements2.add(new ConnectionData(pathElement3,0,0));
+        pathElements2.add(new ConnectionData(pathElement5,0,0));
 
-        pathElements3.add(pathElement4);
+        pathElements3.add(new ConnectionData(pathElement4,0,0));
 
-        pathElements4.add(pathElement1);
+        pathElements4.add(new ConnectionData(pathElement1,0,0));
 
-        pathElements5.add(pathElement4);
+        pathElements5.add(new ConnectionData(pathElement4,0,0));
 
         pathElement1.setConnections(pathElements1);
         pathElement2.setConnections(pathElements2);

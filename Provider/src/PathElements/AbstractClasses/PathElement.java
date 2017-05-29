@@ -1,36 +1,20 @@
 package PathElements.AbstractClasses;
 
+import Helpers.ConnectionData;
+
 import java.util.List;
 
 public abstract class PathElement implements Comparable {
 
-    protected double timeDelay;
-    protected double cost;
-    protected List<PathElement> connections;
+    protected List<ConnectionData> connections;
     protected int ID;
     protected String description;
 
-    public double getTimeDelay() {
-        return timeDelay;
-    }
-
-    public void setTimeDelay(double timeDelay) {
-        this.timeDelay = timeDelay;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public List<PathElement> getConnections() {
+    public List<ConnectionData> getConnections() {
         return connections;
     }
 
-    public void setConnections(List<PathElement> connections) {
+    public void setConnections(List<ConnectionData> connections) {
         this.connections = connections;
     }
 
