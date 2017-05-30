@@ -1,29 +1,30 @@
 package ApplicationFacade;
 
+import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.IPAdress;
 import Helpers.Route;
-import Helpers.Exceptions.RouteNotFoundException;
 import Network.Network;
-import RouteProviders.Interfaces.RouteProvider;
+import RouteProviders.AbstractClass.RouteProvider;
 
-import java.util.List;
+import java.util.Set;
 
 public class ApplicationFacade {
 
-    private List<Network> networks;
+    private Set<Network> networks;
 
-    public List<Network> getNetworks() {
+    public Set<Network> getNetworks() {
         return networks;
     }
 
     private static ApplicationFacade instance;
+
     private ApplicationFacade() {
 
     }
 
     public static ApplicationFacade getInstance() {
-        if (instance==null)
-            instance=new ApplicationFacade();
+        if (instance == null)
+            instance = new ApplicationFacade();
         return instance;
     }
 

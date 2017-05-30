@@ -1,22 +1,15 @@
 package RouteProviders.Classes;
 
-import Helpers.IPAdress;
-import Helpers.ProjectsStringsContainer;
-import Helpers.Route;
 import Helpers.Exceptions.RouteNotFoundException;
+import Helpers.IPAdress;
+import Helpers.Route;
 import Network.Network;
-import RouteProviders.Interfaces.RouteProvider;
+import RouteProviders.AbstractClass.RouteProvider;
 
-public class MinimalTimeRouteProvider implements RouteProvider {
+public class MinimalTimeRouteProvider extends RouteProvider {
 
-    String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public MinimalTimeRouteProvider(String name){
-
+    public MinimalTimeRouteProvider(String providerName){
+        super(providerName);
     }
 
     @Override

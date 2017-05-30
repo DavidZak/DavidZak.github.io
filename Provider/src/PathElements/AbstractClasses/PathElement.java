@@ -2,19 +2,19 @@ package PathElements.AbstractClasses;
 
 import Helpers.ConnectionData;
 
-import java.util.List;
+import java.util.Set;
 
 public abstract class PathElement implements Comparable {
 
-    protected List<ConnectionData> connections;
+    protected Set<ConnectionData> connections;
     protected int ID;
     protected String description;
 
-    public List<ConnectionData> getConnections() {
+    public Set<ConnectionData> getConnections() {
         return connections;
     }
 
-    public void setConnections(List<ConnectionData> connections) {
+    public void setConnections(Set<ConnectionData> connections) {
         this.connections = connections;
     }
 

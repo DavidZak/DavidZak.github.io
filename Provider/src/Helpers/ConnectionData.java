@@ -3,9 +3,34 @@ package Helpers;
 import PathElements.AbstractClasses.PathElement;
 
 public class ConnectionData implements Comparable{
-    PathElement pathElement;
-    double cost;
-    double timeDelay;
+
+    private PathElement pathElement;
+    private double cost;
+    private double timeDelay;
+
+    public PathElement getPathElement() {
+        return pathElement;
+    }
+
+    public void setPathElement(PathElement pathElement) {
+        this.pathElement = pathElement;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public double getTimeDelay() {
+        return timeDelay;
+    }
+
+    public void setTimeDelay(double timeDelay) {
+        this.timeDelay = timeDelay;
+    }
 
     public ConnectionData() {
         pathElement = null;

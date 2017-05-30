@@ -3,13 +3,11 @@ package Main;
 import Helpers.ConnectionData;
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.PathFinderHelper;
-import Network.Network;
-import PathElements.Classes.Switch;
 import PathElements.AbstractClasses.PathElement;
-import UIFacade.UIFacade;
+import PathElements.Classes.Switch;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class Main {
@@ -28,11 +26,11 @@ public class Main {
         pathElement4.setID(4);
         pathElement5.setID(5);
 
-        List<ConnectionData> pathElements1=new ArrayList<>();
-        List<ConnectionData> pathElements3=new ArrayList<>();
-        List<ConnectionData> pathElements2=new ArrayList<>();
-        List<ConnectionData> pathElements4=new ArrayList<>();
-        List<ConnectionData> pathElements5=new ArrayList<>();
+        Set<ConnectionData> pathElements1=new HashSet<>();
+        Set<ConnectionData> pathElements2=new HashSet<>();
+        Set<ConnectionData> pathElements3=new HashSet<>();
+        Set<ConnectionData> pathElements4=new HashSet<>();
+        Set<ConnectionData> pathElements5=new HashSet<>();
 
         pathElements1.add(new ConnectionData(pathElement2,0,0));
         pathElements1.add(new ConnectionData(pathElement3,0,0));
@@ -54,5 +52,7 @@ public class Main {
 
         PathFinderHelper pathFinderHelper=new PathFinderHelper();
         pathFinderHelper.findPathWithMinimalElementsCount(pathElement1,pathElement4,0);
+
+
     }
 }
