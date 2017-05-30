@@ -1,10 +1,14 @@
 package Main;
 
+import ApplicationFacade.ApplicationFacade;
 import Helpers.ConnectionData;
 import Helpers.Exceptions.RouteNotFoundException;
-import Helpers.PathFinderHelper;
+import Network.Network;
 import PathElements.AbstractClasses.PathElement;
 import PathElements.Classes.Switch;
+import RouteProviders.AbstractClass.RouteProvider;
+import RouteProviders.Classes.MinimalCostRouteProvider;
+import UIFacade.UIFacade;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -50,9 +54,24 @@ public class Main {
         pathElement4.setConnections(pathElements4);
         pathElement5.setConnections(pathElements5);
 
-        PathFinderHelper pathFinderHelper=new PathFinderHelper();
-        pathFinderHelper.findPathWithMinimalElementsCount(pathElement1,pathElement4,0);
+        //PathFinderHelper pathFinderHelper=new PathFinderHelper();
+        //pathFinderHelper.findPathWithMinimalElementsCount(pathElement1,pathElement4,0);
 
+        Network network=new Network("net");
+        RouteProvider provider =new MinimalCostRouteProvider("minCost");
+        network.getPathElements().add(pathElement1);
+        network.getPathElements().add(pathElement2);
+        network.getPathElements().add(pathElement3);
+
+        Set<Network> networks=new HashSet<Network>();
+        networks.add(network);
+        ApplicationFacade.getInstance().setNetworks(networks);
+
+        Set<RouteProvider> providers=new HashSet<RouteProvider>();
+        providers.add(provider);
+        ApplicationFacade.getInstance().setRouteProviders(providers);
+
+        UIFacade.getInstance().readInput();
 
     }
 }

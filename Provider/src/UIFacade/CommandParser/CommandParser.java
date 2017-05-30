@@ -1,43 +1,30 @@
 package UIFacade.CommandParser;
 
 import Helpers.Exceptions.RouteNotFoundException;
-import UIFacade.CommandPattern.Command;
-import UIFacade.CommandPattern.FindRouteWithMinimalCostCommand;
-import UIFacade.CommandPattern.FindRouteWithMinimalCountCommand;
-import UIFacade.CommandPattern.FindRouteWithMinimalTimeCommand;
+import UIFacade.CommandPattern.RouteWithMinimalCostCommand;
 
 public class CommandParser {
 
     public void parseString(String stringToParse) throws RouteNotFoundException {
 
-        String[] splitedParts=splitCommandString(stringToParse);
+        String[] splitedParts = splitCommandString(stringToParse);
+        for (int i = 0; i < splitedParts.length; i++) {
+            System.out.println(splitedParts[i]);
+        }
 
-        if (splitedParts.length==5 && splitedParts[0].equals("route")){
-            System.out.println("id parsed");
-            if (splitedParts[2].equals("minCost"))
-                new FindRouteWithMinimalCostCommand().getRouteByID(splitedParts);
-            if (splitedParts[2].equals("minTime"))
-                new FindRouteWithMinimalTimeCommand().getRouteByID(splitedParts);
-            if (splitedParts[2].equals("minCount"))
-                new FindRouteWithMinimalCountCommand().getRouteByID(splitedParts);
+        if (splitedParts.length == 5 && splitedParts[0].equals("route")) {
+            new RouteWithMinimalCostCommand(splitedParts[1], splitedParts[2], splitedParts[3], splitedParts[4]).execute();
             return;
         }
-        if (splitedParts.length==5 && splitedParts[0].equals("route-ip")){
-            System.out.println("ip parsed");
-            if (splitedParts[2].equals("minCost"))
-                new FindRouteWithMinimalCostCommand().getRouteByIP(splitedParts);
-            if (splitedParts[2].equals("minTime"))
-                new FindRouteWithMinimalTimeCommand().getRouteByIP(splitedParts);
-            if (splitedParts[2].equals("minCount"))
-                new FindRouteWithMinimalCountCommand().getRouteByIP(splitedParts);
-            return;
+        if (splitedParts.length == 5 && splitedParts[0].equals("route-ip")) {
+
         }
         System.out.println("not parsed");
         return;
     }
 
-    String[] splitCommandString(String inputString){
-        String[] splits=inputString.split(" ");
+    String[] splitCommandString(String inputString) {
+        String[] splits = inputString.split(" ");
         return splits;
     }
 }

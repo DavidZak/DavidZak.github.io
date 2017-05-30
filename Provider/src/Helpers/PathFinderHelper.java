@@ -17,9 +17,9 @@ public class PathFinderHelper {
             PathElement element = queue.poll();
             for (ConnectionData connectionData : element.getConnections()) {
 
-                System.out.println(connectionData.pathElement);
-                queue.add(connectionData.pathElement);
-                map.put(connectionData.pathElement, marker + 1);
+                System.out.println(connectionData.getPathElement());
+                queue.add(connectionData.getPathElement());
+                map.put(connectionData.getPathElement(), marker + 1);
 
                 System.out.println(marker);
             }

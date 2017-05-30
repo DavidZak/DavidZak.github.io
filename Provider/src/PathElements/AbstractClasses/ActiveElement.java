@@ -1,15 +1,15 @@
 package PathElements.AbstractClasses;
-import Helpers.IPAdress;
+import Helpers.IPAddress;
 
 public class ActiveElement extends PathElement {
 
-    protected IPAdress IP;
+    protected IPAddress IP;
 
-    public IPAdress getIP() {
+    public IPAddress getIP() {
         return IP;
     }
 
-    public void setIP(IPAdress ip){
+    public void setIP(IPAddress ip){
         IP=ip;
     }
 }
