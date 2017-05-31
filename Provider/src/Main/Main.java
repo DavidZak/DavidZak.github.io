@@ -6,8 +6,12 @@ import Helpers.Exceptions.RouteNotFoundException;
 import Network.Network;
 import PathElements.AbstractClasses.PathElement;
 import PathElements.Classes.Switch;
-import RouteProviders.AbstractClass.RouteProvider;
-import RouteProviders.Classes.MinimalCostRouteProvider;
+import RouteProvider.PathFinders.MinimalCostPathFinder;
+import RouteProvider.PathFinders.PathFinder;
+import RouteProvider.RouteProvider;
+import UIFacade.CommandPattern.Command;
+import UIFacade.CommandPattern.RouteByIDCommand;
+import UIFacade.CommandPattern.RouteByIPCommand;
 import UIFacade.UIFacade;
 
 import java.util.HashSet;
@@ -58,20 +62,22 @@ public class Main {
         //pathFinderHelper.findPathWithMinimalElementsCount(pathElement1,pathElement4,0);
 
         Network network=new Network("net");
-        RouteProvider provider =new MinimalCostRouteProvider("minCost");
+
         network.getPathElements().add(pathElement1);
         network.getPathElements().add(pathElement2);
         network.getPathElements().add(pathElement3);
 
-        Set<Network> networks=new HashSet<Network>();
-        networks.add(network);
-        ApplicationFacade.getInstance().setNetworks(networks);
+        PathFinder pathFinder=new MinimalCostPathFinder();
+        RouteProvider provider=new RouteProvider("pro",pathFinder);
 
-        Set<RouteProvider> providers=new HashSet<RouteProvider>();
-        providers.add(provider);
-        ApplicationFacade.getInstance().setRouteProviders(providers);
+        ApplicationFacade applicationFacade=
+                new ApplicationFacade(network,provider,1,3);
 
-        UIFacade.getInstance().readInput();
+        Command command=new RouteByIDCommand(applicationFacade);
+        Command command1=new RouteByIPCommand(applicationFacade);
+
+        UIFacade uiFacade=new UIFacade(command,command1);
+        uiFacade.readInput();
 
     }
 }

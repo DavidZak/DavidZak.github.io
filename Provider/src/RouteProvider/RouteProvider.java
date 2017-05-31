@@ -1,14 +1,18 @@
-package RouteProviders.AbstractClass;
+package RouteProvider;
 
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.IPAddress;
 import Helpers.ProjectValuesGenerator;
 import Helpers.Route;
 import Network.Network;
+import PathElements.AbstractClasses.PassiveElement;
+import PathElements.AbstractClasses.PathElement;
+import RouteProvider.PathFinders.PathFinder;
 
-public abstract class RouteProvider {
+public class RouteProvider {
 
     private String providerName;
+    private PathFinder pathFinder;
 
     public String getProviderName() {
         return providerName;
@@ -18,21 +22,23 @@ public abstract class RouteProvider {
         this.providerName = providerName;
     }
 
-    public RouteProvider(){
+    public RouteProvider() {
         this.providerName = ProjectValuesGenerator.generateString();
+        this.pathFinder = null;
         System.out.println(this.getProviderName());
     }
 
-    protected RouteProvider(String providerName){
+    public RouteProvider(String providerName, PathFinder pathFinder) {
         this.setProviderName(providerName);
+        this.pathFinder = pathFinder;
     }
 
-    public Route getRoute(int firstID, int secondID, Network network) throws RouteNotFoundException{
-        throw new RouteNotFoundException();
+    public Route getRoute(int firstID, int secondID, Network network) throws RouteNotFoundException {
+        return pathFinder.findPath(firstID, secondID, network);
     }
 
-    public Route getRoute(IPAddress firstIP, IPAddress secondIP, Network network) throws RouteNotFoundException{
-        throw new RouteNotFoundException();
+    public Route getRoute(IPAddress firstIP, IPAddress secondIP, Network network) throws RouteNotFoundException {
+        return pathFinder.findPath(firstIP.getIp(), secondIP.getIp(), network);
     }
 
     @Override
@@ -60,5 +66,13 @@ public abstract class RouteProvider {
         if (!getProviderName().equals(other.getProviderName()))
             return false;
         return true;
+    }
+
+    public PathFinder getPathFinder() {
+        return pathFinder;
+    }
+
+    public void setPathFinder(PathFinder pathFinder) {
+        this.pathFinder = pathFinder;
     }
 }

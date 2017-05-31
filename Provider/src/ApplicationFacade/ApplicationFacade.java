@@ -1,69 +1,55 @@
 package ApplicationFacade;
 
-import Helpers.Exceptions.NetworkNotFoundException;
-import Helpers.Exceptions.ProviderNotFoundException;
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.IPAddress;
 import Helpers.Route;
 import Network.Network;
-import RouteProviders.AbstractClass.RouteProvider;
-
-import java.util.Set;
+import RouteProvider.RouteProvider;
 
 public class ApplicationFacade {
 
-    private Set<Network> networks;
-    private Set<RouteProvider> routeProviders;
+    private Network network;
+    private RouteProvider provider;
+    private int firstID;
+    private int secondID;
+    private IPAddress firstIP;
+    private IPAddress secondIP;
 
-    public Set<Network> getNetworks() {
-        return networks;
+    public Network getNetwork() {
+        return network;
     }
 
-    public void setNetworks(Set<Network> networks) {
-        this.networks = networks;
+    public void setNetwork(Network network) {
+        this.network = network;
     }
 
-    public Set<RouteProvider> getRouteProviders() {
-        return routeProviders;
+    public RouteProvider getRouteProviders(RouteProvider provider) {
+        return provider;
     }
 
-    public void setRouteProviders(Set<RouteProvider> routeProviders) {
-        this.routeProviders = routeProviders;
+    public void setRouteProvider(RouteProvider provider) {
+        this.provider = provider;
     }
 
-    private static ApplicationFacade instance;
-
-    private ApplicationFacade() {
-
+    public ApplicationFacade(Network network, RouteProvider provider, int firstID, int secondID) {
+        this.provider = provider;
+        this.network = network;
+        this.firstID = firstID;
+        this.secondID = secondID;
     }
 
-    public static ApplicationFacade getInstance() {
-        if (instance == null)
-            instance = new ApplicationFacade();
-        return instance;
+    public ApplicationFacade(Network network, RouteProvider provider, IPAddress firstIP, IPAddress secondIP) {
+        this.provider = provider;
+        this.network = network;
+        this.firstIP = firstIP;
+        this.secondIP = secondIP;
     }
 
-    public Route getRoute(Network network, RouteProvider provider, int firstID, int secondID) throws RouteNotFoundException, NetworkNotFoundException, ProviderNotFoundException {
-        if (!getNetworks().contains(network)){
-            throw new NetworkNotFoundException();
-        }
-        if (!getRouteProviders().contains(provider)){
-            throw new ProviderNotFoundException();
-        }
-
+    public Route getRouteByID() throws RouteNotFoundException {
         return provider.getRoute(firstID, secondID, network);
     }
 
-    public Route getRoute(Network network, RouteProvider provider, IPAddress firstIP, IPAddress secondIP) throws RouteNotFoundException, ProviderNotFoundException, NetworkNotFoundException {
-        if (!getNetworks().contains(network)){
-            throw new NetworkNotFoundException();
-        }
-        if (!getRouteProviders().contains(provider)){
-            throw new ProviderNotFoundException();
-        }
-
+    public Route getRouteByIP() throws RouteNotFoundException {
         return provider.getRoute(firstIP, secondIP, network);
     }
-
-
 }

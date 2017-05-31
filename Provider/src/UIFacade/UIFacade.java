@@ -2,7 +2,10 @@ package UIFacade;
 
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.ProjectsStringsContainer;
+import Network.Network;
 import UIFacade.CommandParser.CommandParser;
+import UIFacade.CommandPattern.Command;
+import UIFacade.CommandPattern.RouteByIDCommand;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,16 +13,28 @@ import java.io.InputStreamReader;
 
 public class UIFacade {
 
-    private static UIFacade instance;
+    Command routeByIDCommand;
+    Command routeByIPCommand;
 
-    private UIFacade() {
-
+    public UIFacade(Command routeByIDCommand,Command routeByIPCommand) {
+        this.routeByIDCommand = routeByIDCommand;
+        this.routeByIPCommand = routeByIPCommand;
     }
 
-    public static UIFacade getInstance() {
-        if (instance == null)
-            instance = new UIFacade();
-        return instance;
+    public void executeByID(){
+        try {
+            routeByIDCommand.execute();
+        } catch (RouteNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void executeByIP(){
+        try {
+            routeByIPCommand.execute();
+        } catch (RouteNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void readInput() throws RouteNotFoundException {
@@ -34,6 +49,20 @@ public class UIFacade {
     }
 
     private void executeCommand(String command) throws RouteNotFoundException {
-        new CommandParser().parseString(command);
+        CommandParser parser = new CommandParser();
+        parser.parseString(command);
+
+        String[] parts = parser.getParts();
+        if (parts != null) {
+            int first=0;
+            int second=0;
+            try {
+                first=Integer.parseInt(parts[3]);
+                second=Integer.parseInt(parts[4]);
+            } catch (NumberFormatException e){
+                e.printStackTrace();
+            }
+            executeByID();
+        }
     }
 }
