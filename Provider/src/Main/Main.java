@@ -11,6 +11,7 @@ import PathElements.Classes.Switch;
 import RouteProvider.PathFinders.MinimalCostPathFinder;
 import RouteProvider.PathFinders.PathFinder;
 import RouteProvider.RouteProvider;
+import UIFacade.CommandParser.CommandParser;
 import UIFacade.CommandPattern.Command;
 import UIFacade.CommandPattern.RouteByIDCommand;
 import UIFacade.CommandPattern.RouteByIPCommand;
@@ -79,16 +80,13 @@ public class Main {
         Command command=new RouteByIDCommand(applicationFacade);
         Command command1=new RouteByIPCommand(applicationFacade);
 
-        //UIFacade uiFacade=new UIFacade(command,command1);
-        //uiFacade.readInput();
+        UIFacade uiFacade=new UIFacade(command,command1);
+        uiFacade.readInput();
 
-        ApplicationDataContainer container=ApplicationDataContainer.getInstance();
-        container.readData();
-        container.addNetwork(network);
-        container.addRouteProvider(provider);
+        //ApplicationDataContainer container=ApplicationDataContainer.getInstance();
+        //container.readData();
+        //container.addNetwork(network);
+        //container.addRouteProvider(provider);
 
-
-        System.out.println(container.applicationData.networks);
-        System.out.println(container.applicationData.routeProviders);
     }
 }

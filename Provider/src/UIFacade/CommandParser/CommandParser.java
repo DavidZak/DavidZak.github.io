@@ -3,6 +3,9 @@ package UIFacade.CommandParser;
 import Helpers.Exceptions.RouteNotFoundException;
 import UIFacade.CommandPattern.Command;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CommandParser {
 
     private String[] parts;
@@ -39,5 +42,17 @@ public class CommandParser {
 
     public void setParts(String[] parts) {
         this.parts = parts;
+    }
+
+    public boolean checkIDRegExp(String string){
+        Pattern p = Pattern.compile("^[1-9]\\d*$");
+        Matcher m = p.matcher(string);
+        return m.matches();
+    }
+
+    public boolean checkIPRegExp(String string){
+        Pattern p = Pattern.compile("((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)");
+        Matcher m = p.matcher(string);
+        return m.matches();
     }
 }

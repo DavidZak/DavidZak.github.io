@@ -54,15 +54,16 @@ public class UIFacade {
 
         String[] parts = parser.getParts();
         if (parts != null) {
-            int first=0;
-            int second=0;
-            try {
-                first=Integer.parseInt(parts[3]);
-                second=Integer.parseInt(parts[4]);
-            } catch (NumberFormatException e){
-                e.printStackTrace();
+            if (parser.checkIDRegExp(parts[3]) && parser.checkIDRegExp(parts[4])){
+                executeByID();
+                return;
             }
-            executeByID();
+            if (parser.checkIPRegExp(parts[3]) && parser.checkIPRegExp(parts[4])){
+                executeByIP();
+                return;
+            }
+            System.out.println("косяк, введите ещё!!!");
+            readInput();
         }
     }
 }

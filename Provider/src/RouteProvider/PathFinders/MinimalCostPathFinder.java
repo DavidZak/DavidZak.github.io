@@ -8,7 +8,7 @@ public class MinimalCostPathFinder extends PathFinder {
 
     @Override
     public Route findPath(int first, int second, Network network) {
-        System.out.println("sasai");
+        System.out.println("зашел куда надо");
         return null;
     }
 
