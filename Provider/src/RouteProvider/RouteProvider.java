@@ -41,7 +41,7 @@ public class RouteProvider {
     }
 
     public Route getRoute(IPAddress firstIP, IPAddress secondIP, Network network) throws RouteNotFoundException {
-        return pathFinder.findPath(firstIP.getIp(), secondIP.getIp(), network);
+        return pathFinder.findPath(firstIP.ip, secondIP.ip, network);
     }
 
     @Override

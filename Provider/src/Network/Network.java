@@ -19,8 +19,8 @@ public class Network {
     @XmlElement(name = "networkName")
     public String networkName;
 
-    @XmlElementWrapper(name="networkElements")
-    @XmlElement(name ="element")
+    @XmlElementWrapper(name = "networkElements")
+    @XmlElement(name = "element")
     public List<PathElement> pathElements;
 
     public void setID(int id) {
@@ -41,9 +41,9 @@ public class Network {
         this.pathElements = new ArrayList<>();
     }
 
-    public Network(String networkName){
-        this.networkName=networkName;
-        this.pathElements=new ArrayList<>();
+    public Network(String networkName) {
+        this.networkName = networkName;
+        this.pathElements = new ArrayList<>();
     }
 
     public Network(String networkName, List<PathElement> pathElements) {
@@ -72,5 +72,10 @@ public class Network {
         if (id != other.id || networkName != other.networkName)
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Network#" + id + "-" + networkName;
     }
 }

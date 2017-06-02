@@ -1,12 +1,13 @@
 package Helpers;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "IPAddress")
 public class IPAddress {
 
-    private String ip;
-
-    public String getIp() {
-        return ip;
-    }
+    @XmlElement
+    public String ip;
 
     public void setIp(String ip) {
         this.ip = ip;

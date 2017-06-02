@@ -1,13 +1,14 @@
 package PathElements.AbstractClasses;
 import Helpers.IPAddress;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "activeElement")
 public class ActiveElement extends PathElement {
 
-    protected IPAddress IP;
-
-    public IPAddress getIP() {
-        return IP;
-    }
+    @XmlElement
+    public IPAddress IP;
 
     public void setIP(IPAddress ip){
         IP=ip;
