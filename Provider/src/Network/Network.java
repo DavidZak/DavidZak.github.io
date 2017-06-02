@@ -1,33 +1,34 @@
 package Network;
 import Helpers.ProjectValuesGenerator;
 import PathElements.AbstractClasses.PathElement;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name="network")
+@XmlType(propOrder = {"id","networkName","pathElements"})
 public class Network {
 
-    private int id;
-    private String networkName;
-    private List<PathElement> pathElements;
+    @XmlElement(name = "id")
+    public int id;
 
-    public int getID() {
-        return id;
-    }
+    @XmlElement(name = "networkName")
+    public String networkName;
+
+    @XmlElementWrapper(name="networkElements")
+    @XmlElement(name ="element")
+    public List<PathElement> pathElements;
 
     public void setID(int id) {
         this.id = id;
     }
 
-    public String getNetworkName() {
-        return networkName;
-    }
-
     public void setNetworkName(String networkName) {
         this.networkName = networkName;
-    }
-
-    public List<PathElement> getPathElements() {
-        return pathElements;
     }
 
     public void setPathElements(List<PathElement> pathElements) {
@@ -54,8 +55,8 @@ public class Network {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + getID();
-        result = prime * result + (getNetworkName() == null ? 0 : getNetworkName().hashCode());
+        result = prime * result + id;
+        result = prime * result + (networkName == null ? 0 : networkName.hashCode());
         return result;
     }
 
@@ -68,7 +69,7 @@ public class Network {
         if (getClass() != obj.getClass())
             return false;
         Network other = (Network) obj;
-        if (getID() != other.getID() || getNetworkName() != other.networkName)
+        if (id != other.id || networkName != other.networkName)
             return false;
         return true;
     }

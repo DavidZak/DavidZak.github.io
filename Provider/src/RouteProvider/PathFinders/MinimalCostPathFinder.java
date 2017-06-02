@@ -4,7 +4,7 @@ import Helpers.Route;
 import Network.Network;
 import PathElements.AbstractClasses.PathElement;
 
-public class MinimalCostPathFinder implements PathFinder {
+public class MinimalCostPathFinder extends PathFinder {
 
     @Override
     public Route findPath(int first, int second, Network network) {

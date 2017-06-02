@@ -3,7 +3,7 @@ package RouteProvider.PathFinders;
 import Helpers.Route;
 import Network.Network;
 
-public class MinimalTimePathFinder implements PathFinder {
+public class MinimalTimePathFinder extends PathFinder {
 
     @Override
     public Route findPath(int first, int second, Network network) {

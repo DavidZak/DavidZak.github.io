@@ -1,6 +1,8 @@
 package Main;
 
 import ApplicationFacade.ApplicationFacade;
+import Helpers.ApplicationData.ApplicationData;
+import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.ConnectionData;
 import Helpers.Exceptions.RouteNotFoundException;
 import Network.Network;
@@ -28,11 +30,11 @@ public class Main {
         PathElement pathElement4=new Switch();
         PathElement pathElement5=new Switch();
 
-        pathElement1.setID(1);
-        pathElement2.setID(2);
-        pathElement3.setID(3);
-        pathElement4.setID(4);
-        pathElement5.setID(5);
+        pathElement1.ID=1;
+        pathElement2.ID=2;
+        pathElement3.ID=3;
+        pathElement4.ID=4;
+        pathElement5.ID=5;
 
         Set<ConnectionData> pathElements1=new HashSet<>();
         Set<ConnectionData> pathElements2=new HashSet<>();
@@ -52,20 +54,21 @@ public class Main {
 
         pathElements5.add(new ConnectionData(pathElement4,0,0));
 
-        pathElement1.setConnections(pathElements1);
-        pathElement2.setConnections(pathElements2);
-        pathElement3.setConnections(pathElements3);
-        pathElement4.setConnections(pathElements4);
-        pathElement5.setConnections(pathElements5);
+        pathElement1.connections=pathElements1;
+        pathElement2.connections=pathElements2;
+        pathElement3.connections=pathElements3;
+        pathElement4.connections=pathElements4;
+        pathElement5.connections=pathElements5;
 
         //PathFinderHelper pathFinderHelper=new PathFinderHelper();
         //pathFinderHelper.findPathWithMinimalElementsCount(pathElement1,pathElement4,0);
 
         Network network=new Network("net");
+        network.setID(1);
 
-        network.getPathElements().add(pathElement1);
-        network.getPathElements().add(pathElement2);
-        network.getPathElements().add(pathElement3);
+        network.pathElements.add(pathElement1);
+        network.pathElements.add(pathElement2);
+        network.pathElements.add(pathElement3);
 
         PathFinder pathFinder=new MinimalCostPathFinder();
         RouteProvider provider=new RouteProvider("pro",pathFinder);
@@ -76,8 +79,16 @@ public class Main {
         Command command=new RouteByIDCommand(applicationFacade);
         Command command1=new RouteByIPCommand(applicationFacade);
 
-        UIFacade uiFacade=new UIFacade(command,command1);
-        uiFacade.readInput();
+        //UIFacade uiFacade=new UIFacade(command,command1);
+        //uiFacade.readInput();
 
+        ApplicationDataContainer container=ApplicationDataContainer.getInstance();
+        container.readData();
+        container.addNetwork(network);
+        container.addRouteProvider(provider);
+
+
+        System.out.println(container.applicationData.networks);
+        System.out.println(container.applicationData.routeProviders);
     }
 }

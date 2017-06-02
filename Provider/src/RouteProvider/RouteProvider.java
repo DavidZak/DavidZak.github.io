@@ -5,18 +5,21 @@ import Helpers.IPAddress;
 import Helpers.ProjectValuesGenerator;
 import Helpers.Route;
 import Network.Network;
-import PathElements.AbstractClasses.PassiveElement;
-import PathElements.AbstractClasses.PathElement;
 import RouteProvider.PathFinders.PathFinder;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name="provider")
+@XmlType(propOrder = {"providerName","pathFinder"})
 public class RouteProvider {
 
-    private String providerName;
-    private PathFinder pathFinder;
+    @XmlElement(name = "providerName")
+    public String providerName;
 
-    public String getProviderName() {
-        return providerName;
-    }
+    @XmlElement(name = "pathFinder")
+    public PathFinder pathFinder;
 
     public void setProviderName(String providerName) {
         this.providerName = providerName;
@@ -25,7 +28,7 @@ public class RouteProvider {
     public RouteProvider() {
         this.providerName = ProjectValuesGenerator.generateString();
         this.pathFinder = null;
-        System.out.println(this.getProviderName());
+        System.out.println(this.providerName);
     }
 
     public RouteProvider(String providerName, PathFinder pathFinder) {
@@ -43,14 +46,14 @@ public class RouteProvider {
 
     @Override
     public String toString() {
-        return getProviderName();
+        return providerName;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (getProviderName() == null ? 0 : getProviderName().hashCode());
+        result = prime * result + (providerName == null ? 0 : providerName.hashCode());
         return result;
     }
 
@@ -63,13 +66,9 @@ public class RouteProvider {
         if (getClass() != obj.getClass())
             return false;
         RouteProvider other = (RouteProvider) obj;
-        if (!getProviderName().equals(other.getProviderName()))
+        if (!providerName.equals(other.providerName))
             return false;
         return true;
-    }
-
-    public PathFinder getPathFinder() {
-        return pathFinder;
     }
 
     public void setPathFinder(PathFinder pathFinder) {

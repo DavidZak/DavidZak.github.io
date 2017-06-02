@@ -2,58 +2,43 @@ package PathElements.AbstractClasses;
 
 import Helpers.ConnectionData;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Set;
 
+@XmlRootElement(name = "Element")
+@XmlType(propOrder = {"ID", "connections"})
 public abstract class PathElement implements Comparable {
 
-    protected Set<ConnectionData> connections;
-    protected int ID;
-    protected String description;
+    @XmlElement(name = "ID")
+    public int ID;
 
-    public Set<ConnectionData> getConnections() {
-        return connections;
-    }
-
-    public void setConnections(Set<ConnectionData> connections) {
-        this.connections = connections;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int id) {
-        this.ID = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    @XmlElementWrapper
+    @XmlElement(name = "connection")
+    public Set<ConnectionData> connections;
 
     @Override
     public int compareTo(Object o) {
         PathElement element = (PathElement) o;
-        if (this.getID() > element.getID())
+        if (this.ID > element.ID)
             return 1;
-        if (this.getID() < element.getID())
+        if (this.ID < element.ID)
             return -1;
         return 0;
     }
 
     @Override
     public String toString() {
-        return "#" + getID();
+        return "#" + ID;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + getID();
+        result = prime * result + ID;
         return result;
     }
 
@@ -66,7 +51,7 @@ public abstract class PathElement implements Comparable {
         if (getClass() != obj.getClass())
             return false;
         PathElement other = (PathElement) obj;
-        if (getID() != other.getID())
+        if (ID != other.ID)
             return false;
         return true;
     }

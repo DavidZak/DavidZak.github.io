@@ -1,5 +1,7 @@
 package XMLParser;
 
+import Helpers.ProjectsStringsContainer;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -11,6 +13,8 @@ public class JaxbParser implements Parser {
     public Object getObject(File file, Class c) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(c);
         Unmarshaller unmarshaller = context.createUnmarshaller();
+        if (file==null)
+            file=new File(ProjectsStringsContainer.FILE_PATH);
         Object object = unmarshaller.unmarshal(file);
 
         return object;

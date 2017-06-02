@@ -2,30 +2,29 @@ package Helpers;
 
 import PathElements.AbstractClasses.PathElement;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "connection")
+@XmlType(propOrder = {"pathElementID", "cost","timeDelay"})
 public class ConnectionData implements Comparable{
 
-    private PathElement pathElement;
-    private double cost;
-    private double timeDelay;
+    @XmlElement(name = "pathElementID")
+    public int pathElementID;
 
-    public PathElement getPathElement() {
-        return pathElement;
-    }
+    @XmlElement(name = "cost")
+    public double cost;
 
-    public void setPathElement(PathElement pathElement) {
-        this.pathElement = pathElement;
-    }
+    @XmlElement(name = "timeDelay")
+    public double timeDelay;
 
-    public double getCost() {
-        return cost;
+    public void setPathElementID(int pathElementID) {
+        this.pathElementID = pathElementID;
     }
 
     public void setCost(double cost) {
         this.cost = cost;
-    }
-
-    public double getTimeDelay() {
-        return timeDelay;
     }
 
     public void setTimeDelay(double timeDelay) {
@@ -33,19 +32,19 @@ public class ConnectionData implements Comparable{
     }
 
     public ConnectionData() {
-        pathElement = null;
+        pathElementID=-1;
         cost = 0;
         timeDelay = 0;
     }
 
     public ConnectionData(PathElement pathElement){
-        this.pathElement=pathElement;
+        this.pathElementID=pathElement.ID;
         this.cost=0;
         this.timeDelay=0;
     }
 
     public ConnectionData(PathElement pathElement, double cost, double timeDelay) {
-        this.pathElement = pathElement;
+        this.pathElementID = pathElement.ID;
         this.cost = cost;
         this.timeDelay = timeDelay;
     }
@@ -53,14 +52,14 @@ public class ConnectionData implements Comparable{
     @Override
     public int compareTo(Object o) {
         ConnectionData element = (ConnectionData) o;
-        return this.pathElement.compareTo(element.pathElement);
+        return this.pathElementID=element.pathElementID;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + pathElement.hashCode();
+        result = prime * result + pathElementID;
         return result;
     }
 
@@ -73,7 +72,7 @@ public class ConnectionData implements Comparable{
         if (getClass() != obj.getClass())
             return false;
         ConnectionData other = (ConnectionData) obj;
-        if (pathElement != other.pathElement)
+        if (pathElementID != other.pathElementID)
             return false;
         return true;
     }
