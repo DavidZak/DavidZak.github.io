@@ -43,17 +43,18 @@ public class Main {
         Set<ConnectionData> pathElements4=new HashSet<>();
         Set<ConnectionData> pathElements5=new HashSet<>();
 
-        pathElements1.add(new ConnectionData(pathElement2,0,0));
-        pathElements1.add(new ConnectionData(pathElement3,0,0));
+        pathElements1.add(new ConnectionData(pathElement2,17,0));
+        pathElements1.add(new ConnectionData(pathElement3,13,0));
 
-        pathElements2.add(new ConnectionData(pathElement3,0,0));
-        pathElements2.add(new ConnectionData(pathElement5,0,0));
+        pathElements2.add(new ConnectionData(pathElement3,1,0));
+        pathElements2.add(new ConnectionData(pathElement5,10,0));
 
-        pathElements3.add(new ConnectionData(pathElement4,0,0));
+        pathElements3.add(new ConnectionData(pathElement2,1,0));
+        pathElements3.add(new ConnectionData(pathElement5,2,0));
 
-        pathElements4.add(new ConnectionData(pathElement1,0,0));
+        pathElements4.add(new ConnectionData(pathElement1,12,0));
 
-        pathElements5.add(new ConnectionData(pathElement4,0,0));
+        pathElements5.add(new ConnectionData(pathElement4,5,0));
 
         pathElement1.connections=pathElements1;
         pathElement2.connections=pathElements2;
@@ -70,6 +71,8 @@ public class Main {
         network.pathElements.add(pathElement1);
         network.pathElements.add(pathElement2);
         network.pathElements.add(pathElement3);
+        network.pathElements.add(pathElement4);
+        network.pathElements.add(pathElement5);
 
         PathFinder pathFinder=new MinimalCostPathFinder();
         RouteProvider provider=new RouteProvider("pro",pathFinder);
