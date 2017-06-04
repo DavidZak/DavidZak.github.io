@@ -75,6 +75,12 @@ public class MinimalTimePathFinder extends PathFinder {
 
     @Override
     public Route findPath(String first, String second, Network network) throws RouteNotFoundException {
-        return null;
+        System.out.println("Зашел в Minimal Time Path Finder по IP");
+
+        PathElement element1 = network.getElementByIP(first);
+
+        PathElement element2 = network.getElementByIP(second);
+
+        return findPath(element1.ID, element2.ID, network);
     }
 }

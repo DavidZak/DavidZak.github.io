@@ -5,7 +5,9 @@ import Helpers.ApplicationData.ApplicationData;
 import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.ConnectionData;
 import Helpers.Exceptions.RouteNotFoundException;
+import Helpers.IPAddress;
 import Network.Network;
+import PathElements.AbstractClasses.ActiveElement;
 import PathElements.AbstractClasses.PathElement;
 import PathElements.Classes.Switch;
 import RouteProvider.PathFinders.MinimalCostPathFinder;
@@ -26,17 +28,23 @@ public class Main {
     public static void main(String[] args) throws RouteNotFoundException {
 
         //UIFacade.getInstance().readInput();
-        PathElement pathElement1 = new Switch();
-        PathElement pathElement2 = new Switch();
-        PathElement pathElement3 = new Switch();
-        PathElement pathElement4 = new Switch();
-        PathElement pathElement5 = new Switch();
+        ActiveElement pathElement1 = new Switch();
+        ActiveElement pathElement2 = new Switch();
+        ActiveElement pathElement3 = new Switch();
+        ActiveElement pathElement4 = new Switch();
+        ActiveElement pathElement5 = new Switch();
 
         pathElement1.ID = 1;
         pathElement2.ID = 2;
         pathElement3.ID = 3;
         pathElement4.ID = 4;
         pathElement5.ID = 5;
+
+        pathElement1.IP = new IPAddress("11.11.11.11");
+        pathElement2.IP = new IPAddress("22.22.22.22");
+        pathElement3.IP = new IPAddress("33.33.33.33");
+        pathElement4.IP = new IPAddress("44.44.44.44");
+        pathElement5.IP = new IPAddress("55.55.55.55");
 
         Set<ConnectionData> pathElements1 = new HashSet<>();
         Set<ConnectionData> pathElements2 = new HashSet<>();
@@ -76,22 +84,22 @@ public class Main {
         network.pathElements.add(pathElement5);
 
         PathFinder pathFinder = new MinimalCostPathFinder("minimal cost finder");
-        PathFinder pathFinder1=new MinimalTimePathFinder("minimal time finder");
+        PathFinder pathFinder1 = new MinimalTimePathFinder("minimal time finder");
         RouteProvider provider = new RouteProvider("pro", pathFinder1);
 
         ApplicationFacade applicationFacade =
-                new ApplicationFacade(network, provider, 1, 3);
+                new ApplicationFacade(network, provider, new IPAddress("11.11.11.11")
+                        , new IPAddress("22.22.22.22"));
 
         Command command = new RouteByIDCommand(applicationFacade);
         Command command1 = new RouteByIPCommand(applicationFacade);
 
+        ApplicationDataContainer container = ApplicationDataContainer.getInstance();
+        container.readData();
+        container.addNetwork(network);
+        container.addRouteProvider(provider);
+
         UIFacade uiFacade = new UIFacade(command, command1);
         uiFacade.readInput();
-
-        //ApplicationDataContainer container=ApplicationDataContainer.getInstance();
-        //container.readData();
-        //container.addNetwork(network);
-        //container.addRouteProvider(provider);
-
     }
 }

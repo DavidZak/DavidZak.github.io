@@ -1,5 +1,6 @@
 package Network;
 import Helpers.ProjectValuesGenerator;
+import PathElements.AbstractClasses.ActiveElement;
 import PathElements.AbstractClasses.PathElement;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -77,5 +78,26 @@ public class Network {
     @Override
     public String toString() {
         return "Network#" + id + "-" + networkName;
+    }
+
+    public PathElement getElementByID(int ID) {
+        for (PathElement element : pathElements) {
+            if (element.ID == ID)
+                return element;
+        }
+        return null;
+    }
+
+    public PathElement getElementByIP(String IP) {
+        for (PathElement element : pathElements) {
+            try {
+                ActiveElement activeElement = (ActiveElement) element;
+                if (activeElement.IP.ip.equals(IP))
+                    return activeElement;
+            } catch (ClassCastException e) {
+                return null;
+            }
+        }
+        return null;
     }
 }
