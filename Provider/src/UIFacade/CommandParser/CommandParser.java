@@ -17,12 +17,7 @@ public class CommandParser {
             System.out.println(splitedParts[i]);
         }
 
-        if (splitedParts.length == 5 && splitedParts[0].equals("route")) {
-            this.parts = splitedParts;
-            return;
-        }
-
-        if (splitedParts.length == 5 && splitedParts[0].equals("route-ip")) {
+        if (splitedParts.length == 5 && (splitedParts[0].equals("route") || splitedParts[0].equals("route-ip"))) {
             this.parts = splitedParts;
             return;
         }
