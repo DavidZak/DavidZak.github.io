@@ -75,8 +75,4 @@ public class RouteProvider {
             return false;
         return true;
     }
-
-    public void setPathFinder(PathFinder pathFinder) {
-        this.pathFinder = pathFinder;
-    }
 }

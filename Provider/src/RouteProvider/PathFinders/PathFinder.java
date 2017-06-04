@@ -48,7 +48,7 @@ public class PathFinder {
         return null;
     }
 
-    LinkedHashSet<Integer> integers=new LinkedHashSet<>();
+    LinkedHashSet<Integer> integers = new LinkedHashSet<>();
 
     public void printWay(int v) {
         if (!pred.containsKey(v)) {
@@ -66,11 +66,11 @@ public class PathFinder {
             }
         }
 
-        integers=new LinkedHashSet<>();
+        integers = new LinkedHashSet<>();
 
         System.out.println("\n");
         for (PathElement v : network.pathElements) {
-            if (v.ID!=end)
+            if (v.ID != end)
                 continue;
             if (dist.get(v.ID) != INF) {
                 System.out.printf("%d: ", v.ID);

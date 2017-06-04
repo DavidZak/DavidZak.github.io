@@ -23,14 +23,6 @@ public class ApplicationFacade {
         this.network = network;
     }
 
-    public RouteProvider getRouteProviders(RouteProvider provider) {
-        return provider;
-    }
-
-    public void setRouteProvider(RouteProvider provider) {
-        this.provider = provider;
-    }
-
     public ApplicationFacade(Network network, RouteProvider provider, int firstID, int secondID) {
         this.provider = provider;
         this.network = network;

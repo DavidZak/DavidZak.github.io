@@ -42,6 +42,8 @@ public class UIFacade {
     }
 
     public void readInput() throws RouteNotFoundException {
+        System.out.println(ProjectFinalsContainer.INPUT_COMMAND);
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String inputString = null;
         try {
@@ -94,7 +96,7 @@ public class UIFacade {
                     return;
                 }
             }
-            System.out.println("косяк, введите ещё!!!");
+            System.out.println(ProjectFinalsContainer.INPUT_COMMAND_TRY_AGAIN);
             readInput();
         }
     }

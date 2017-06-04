@@ -26,7 +26,7 @@ public class ApplicationDataContainer {
     public Parser parser = new JaxbParser();
 
     public void addNetwork(Network network) {
-        if (applicationData.networks.contains(network)){
+        if (applicationData.networks.contains(network)) {
             return;
         }
         applicationData.networks.add(network);
@@ -38,7 +38,7 @@ public class ApplicationDataContainer {
     }
 
     public void addRouteProvider(RouteProvider provider) {
-        if (applicationData.routeProviders.contains(provider)){
+        if (applicationData.routeProviders.contains(provider)) {
             return;
         }
         applicationData.routeProviders.add(provider);
@@ -49,18 +49,18 @@ public class ApplicationDataContainer {
         }
     }
 
-    public Network getNetwork(String name){
-        Network network=new Network(name);
-        for (Network network1:applicationData.networks){
+    public Network getNetwork(String name) {
+        Network network = new Network(name);
+        for (Network network1 : applicationData.networks) {
             if (network1.equals(network))
                 return network1;
         }
         return null;
     }
 
-    public RouteProvider getRouteProvider(String name){
-        RouteProvider provider=new RouteProvider(name);
-        for (RouteProvider provider1:applicationData.routeProviders){
+    public RouteProvider getRouteProvider(String name) {
+        RouteProvider provider = new RouteProvider(name);
+        for (RouteProvider provider1 : applicationData.routeProviders) {
             if (provider1.equals(provider))
                 return provider1;
         }

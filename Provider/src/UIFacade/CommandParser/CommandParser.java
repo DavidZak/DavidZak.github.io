@@ -1,6 +1,7 @@
 package UIFacade.CommandParser;
 
 import Helpers.Exceptions.RouteNotFoundException;
+import Helpers.ProjectFinalsContainer;
 import UIFacade.CommandPattern.Command;
 
 import java.util.regex.Matcher;
@@ -13,6 +14,7 @@ public class CommandParser {
     public void parseString(String stringToParse) throws RouteNotFoundException {
 
         String[] splitedParts = splitCommandString(stringToParse);
+
         for (int i = 0; i < splitedParts.length; i++) {
             System.out.println(splitedParts[i]);
         }
@@ -22,7 +24,7 @@ public class CommandParser {
             return;
         }
 
-        System.out.println("not parsed");
+        System.out.println(ProjectFinalsContainer.PARSING_FAILED);
         return;
     }
 
