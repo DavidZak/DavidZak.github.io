@@ -1,6 +1,6 @@
 package Helpers.ApplicationData;
 
-import Helpers.ProjectsStringsContainer;
+import Helpers.ProjectFinalsContainer;
 import Network.Network;
 import RouteProvider.RouteProvider;
 import XMLParser.JaxbParser;
@@ -28,7 +28,7 @@ public class ApplicationDataContainer {
     public void addNetwork(Network network) {
         applicationData.networks.add(network);
         try {
-            parser.saveObject(new File(ProjectsStringsContainer.FILE_PATH), applicationData);
+            parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -37,7 +37,7 @@ public class ApplicationDataContainer {
     public void addRouteProvider(RouteProvider provider) {
         applicationData.routeProviders.add(provider);
         try {
-            parser.saveObject(new File(ProjectsStringsContainer.FILE_PATH), applicationData);
+            parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -46,7 +46,7 @@ public class ApplicationDataContainer {
     public void removeNetwork(Network network) {
         applicationData.networks.remove(network);
         try {
-            parser.saveObject(new File(ProjectsStringsContainer.FILE_PATH), applicationData);
+            parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class ApplicationDataContainer {
     public void removeRouteProvider(RouteProvider provider) {
         applicationData.routeProviders.remove(provider);
         try {
-            parser.saveObject(new File(ProjectsStringsContainer.FILE_PATH), applicationData);
+            parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -63,7 +63,7 @@ public class ApplicationDataContainer {
 
     public void readData() {
         try {
-            applicationData = (ApplicationData) parser.getObject(new File(ProjectsStringsContainer.FILE_PATH), ApplicationData.class);
+            applicationData = (ApplicationData) parser.getObject(new File(ProjectFinalsContainer.FILE_PATH), ApplicationData.class);
         } catch (JAXBException e) {
             e.printStackTrace();
         }

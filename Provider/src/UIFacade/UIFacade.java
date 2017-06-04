@@ -1,11 +1,9 @@
 package UIFacade;
 
 import Helpers.Exceptions.RouteNotFoundException;
-import Helpers.ProjectsStringsContainer;
-import Network.Network;
+import Helpers.ProjectFinalsContainer;
 import UIFacade.CommandParser.CommandParser;
 import UIFacade.CommandPattern.Command;
-import UIFacade.CommandPattern.RouteByIDCommand;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,7 +41,7 @@ public class UIFacade {
         try {
             inputString = bufferedReader.readLine();
         } catch (IOException e) {
-            System.out.println(ProjectsStringsContainer.IO_EXCEPTION_MESSAGE);
+            System.out.println(ProjectFinalsContainer.IO_EXCEPTION_MESSAGE);
         }
         executeCommand(inputString);
     }

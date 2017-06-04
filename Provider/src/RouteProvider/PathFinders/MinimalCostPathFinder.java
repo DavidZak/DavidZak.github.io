@@ -1,31 +1,28 @@
 package RouteProvider.PathFinders;
 
+import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.ConnectionData;
+import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.Route;
 import Network.Network;
+import PathElements.AbstractClasses.ActiveElement;
 import PathElements.AbstractClasses.PathElement;
 
 import java.util.*;
 
 public class MinimalCostPathFinder extends PathFinder {
 
-    Map<PathElement, Set<ConnectionData>> adj;
-    Map<Integer, Boolean> usedMap;
-    Map<Integer, Integer> dist;
-    Map<Integer, Integer> pred;
-    int INF = 10000;
-
     public MinimalCostPathFinder() {
-        adj = new HashMap<>();
-        usedMap = new HashMap<>();
-        dist = new HashMap<>();
-        pred = new HashMap<>();
-        INF = 10000;
+        super();
+    }
+
+    public MinimalCostPathFinder(String name){
+        super(name);
     }
 
     @Override
-    public Route findPath(int first, int second, Network network) {
-        System.out.println("зашел куда надо");
+    public Route findPath(int first, int second, Network network) throws RouteNotFoundException {
+        System.out.println("зашел в MinimalCostPathFinder по ID");
 
         PathElement startElement = null;
 
@@ -36,8 +33,6 @@ public class MinimalCostPathFinder extends PathFinder {
         }
 
         dist.put(first, 0);
-        for (Map.Entry<Integer, Boolean> entry : usedMap.entrySet())
-            System.out.println(entry.getKey() + " -- " + entry.getValue());
 
         for (PathElement element : network.pathElements) {
 
@@ -76,38 +71,13 @@ public class MinimalCostPathFinder extends PathFinder {
                 usedMap.put(data, false);
             }
         }
-        printData(network);
+
+        printData(network, second);
         return null;
     }
 
-    void printWay(int v) {
-        if (!pred.containsKey(v)) {
-            return;
-        }
-        printWay(pred.get(v));
-        System.out.printf("%d ", v);
-    }
-
-    void printData(Network network) {
-        for (PathElement v : network.pathElements) {
-            if (dist.get(v.ID) != INF) {
-                System.out.printf("%d ", dist.get(v.ID));
-            } else {
-                System.out.println("-1 ");
-            }
-        }
-        System.out.println("\n");
-        for (PathElement v : network.pathElements) {
-            System.out.printf("%d: ", v.ID);
-            if (dist.get(v.ID) != INF) {
-                printWay(v.ID);
-            }
-            System.out.println("\n");
-        }
-    }
-
     @Override
-    public Route findPath(String first, String second, Network network) {
+    public Route findPath(String first, String second, Network network) throws RouteNotFoundException {
         return null;
     }
 }

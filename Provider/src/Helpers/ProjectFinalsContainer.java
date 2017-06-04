@@ -1,6 +1,6 @@
 package Helpers;
 
-public class ProjectsStringsContainer {
+public class ProjectFinalsContainer {
 
     //Exceptions messages
     public final static String ROUTE_NOT_FOUND_EXCEPTION_MESSAGE = "Путь не найден";
@@ -10,4 +10,7 @@ public class ProjectsStringsContainer {
 
     //File Paths
     public static final String FILE_PATH = "data.xml";
+
+    //Values
+    public static final int INF = 10000;
 }
