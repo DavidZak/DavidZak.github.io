@@ -71,8 +71,8 @@ public class MinimalCostPathFinder extends PathFinder {
             }
         }
 
-        printData(network, second);
-        return null;
+        return new Route(printData(network, second));
+
     }
 
     @Override
