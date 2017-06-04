@@ -1,7 +1,18 @@
 package PathElements.Classes;
 
-import PathElements.AbstractClasses.ActiveElement;
+import Helpers.IPAddress;
+import PathElements.AbstractClasses.PathElement;
 
-public class PC extends ActiveElement{
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "PCElement")
+public class PC extends PathElement {
+
+    public PC(){
+
+    }
+
+    public PC(int ID, IPAddress IP) {
+        super(ID, IP);
+    }
 }

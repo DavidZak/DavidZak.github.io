@@ -1,7 +1,18 @@
 package PathElements.Classes;
 
-import PathElements.AbstractClasses.ActiveElement;
+import Helpers.IPAddress;
+import PathElements.AbstractClasses.PathElement;
 
-public class FireWall extends ActiveElement {
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "FireWallElement")
+public class FireWall extends PathElement {
+
+    public FireWall(){
+
+    }
+
+    public FireWall(int ID, IPAddress IP) {
+        super(ID, IP);
+    }
 }

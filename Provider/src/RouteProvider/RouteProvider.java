@@ -31,6 +31,11 @@ public class RouteProvider {
         System.out.println(this.providerName);
     }
 
+    public RouteProvider(String providerName){
+        this.setProviderName(providerName);
+        this.pathFinder=null;
+    }
+
     public RouteProvider(String providerName, PathFinder pathFinder) {
         this.setProviderName(providerName);
         this.pathFinder = pathFinder;

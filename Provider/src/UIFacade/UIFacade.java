@@ -1,9 +1,17 @@
 package UIFacade;
 
+import ApplicationFacade.ApplicationFacade;
+import Helpers.ApplicationData.ApplicationData;
+import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.Exceptions.RouteNotFoundException;
+import Helpers.IPAddress;
 import Helpers.ProjectFinalsContainer;
+import Network.Network;
+import RouteProvider.RouteProvider;
 import UIFacade.CommandParser.CommandParser;
 import UIFacade.CommandPattern.Command;
+import UIFacade.CommandPattern.RouteByIDCommand;
+import UIFacade.CommandPattern.RouteByIPCommand;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,12 +22,10 @@ public class UIFacade {
     Command routeByIDCommand;
     Command routeByIPCommand;
 
-    public UIFacade(Command routeByIDCommand,Command routeByIPCommand) {
-        this.routeByIDCommand = routeByIDCommand;
-        this.routeByIPCommand = routeByIPCommand;
+    public UIFacade() {
     }
 
-    public void executeByID(){
+    public void executeByID() {
         try {
             routeByIDCommand.execute();
         } catch (RouteNotFoundException e) {
@@ -27,7 +33,7 @@ public class UIFacade {
         }
     }
 
-    public void executeByIP(){
+    public void executeByIP() {
         try {
             routeByIPCommand.execute();
         } catch (RouteNotFoundException e) {
@@ -50,15 +56,43 @@ public class UIFacade {
         CommandParser parser = new CommandParser();
         parser.parseString(command);
 
+        ApplicationDataContainer.getInstance().readData();
+        ApplicationDataContainer data = ApplicationDataContainer.getInstance();
+
         String[] parts = parser.getParts();
         if (parts != null) {
-            if (parser.checkIDRegExp(parts[3]) && parser.checkIDRegExp(parts[4])){
-                executeByID();
-                return;
-            }
-            if (parser.checkIPRegExp(parts[3]) && parser.checkIPRegExp(parts[4])){
-                executeByIP();
-                return;
+
+            Network network = data.getNetwork(parts[1]);
+            RouteProvider provider = data.getRouteProvider(parts[2]);
+
+            System.out.println(network);
+            System.out.println(provider);
+
+            if (network!=null && provider!=null) {
+
+                ApplicationFacade facade = null;
+                if (parser.checkIDRegExp(parts[3]) && parser.checkIDRegExp(parts[4])) {
+                    facade = new ApplicationFacade(network, provider,
+                            Integer.parseInt(parts[3]), Integer.parseInt(parts[4]));
+
+                    routeByIDCommand = new RouteByIDCommand(facade);
+
+                    executeByID();
+
+                    return;
+                }
+
+                if (parser.checkIPRegExp(parts[3]) && parser.checkIPRegExp(parts[4])) {
+
+                    facade = new ApplicationFacade(network, provider,
+                            new IPAddress(parts[3]), new IPAddress(parts[4]));
+
+                    routeByIPCommand = new RouteByIPCommand(facade);
+
+                    executeByIP();
+
+                    return;
+                }
             }
             System.out.println("косяк, введите ещё!!!");
             readInput();

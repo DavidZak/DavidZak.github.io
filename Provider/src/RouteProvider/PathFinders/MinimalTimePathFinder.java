@@ -7,6 +7,9 @@ import Helpers.Route;
 import Network.Network;
 import PathElements.AbstractClasses.PathElement;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "MinimalTimePathFinder")
 public class MinimalTimePathFinder extends PathFinder {
 
     public MinimalTimePathFinder(){
@@ -69,8 +72,7 @@ public class MinimalTimePathFinder extends PathFinder {
             }
         }
 
-        printData(network, second);
-        return null;
+        return new Route(printData(network, second));
     }
 
     @Override

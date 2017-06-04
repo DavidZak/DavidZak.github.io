@@ -1,7 +1,17 @@
 package PathElements.Classes;
 
-import PathElements.AbstractClasses.PassiveElement;
+import PathElements.AbstractClasses.PathElement;
 
-public class Cable extends PassiveElement {
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "CableElement")
+public class Cable extends PathElement {
+
+    public Cable(){
+
+    }
+
+    public Cable(int ID) {
+        super(ID);
+    }
 }

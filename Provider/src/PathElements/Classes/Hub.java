@@ -1,7 +1,17 @@
 package PathElements.Classes;
 
-import PathElements.AbstractClasses.PassiveElement;
+import PathElements.AbstractClasses.PathElement;
 
-public class Hub extends PassiveElement{
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "HubElement")
+public class Hub extends PathElement {
+
+    public Hub(){
+
+    }
+
+    public Hub(int ID) {
+        super(ID);
+    }
 }

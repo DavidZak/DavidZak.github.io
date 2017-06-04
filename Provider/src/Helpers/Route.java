@@ -6,9 +6,9 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Route {
-    private Set<PathElement> pathElementsInRoute;
+    private Set<Integer> pathElementsInRoute;
 
-    public Set<PathElement> getPathElementsInRoute() {
+    public Set<Integer> getPathElementsInRoute() {
         return pathElementsInRoute;
     }
 
@@ -16,7 +16,7 @@ public class Route {
         this.pathElementsInRoute = new LinkedHashSet<>();
     }
 
-    public Route(LinkedHashSet<PathElement> pathElements){
+    public Route(LinkedHashSet<Integer> pathElements){
         this.pathElementsInRoute = pathElements;
     }
 }

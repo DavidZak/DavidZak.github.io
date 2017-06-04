@@ -22,10 +22,13 @@ public class ApplicationDataContainer {
         return instance;
     }
 
-    public ApplicationData applicationData=new ApplicationData();
-    public Parser parser=new JaxbParser();
+    public ApplicationData applicationData = new ApplicationData();
+    public Parser parser = new JaxbParser();
 
     public void addNetwork(Network network) {
+        if (applicationData.networks.contains(network)){
+            return;
+        }
         applicationData.networks.add(network);
         try {
             parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
@@ -35,12 +38,33 @@ public class ApplicationDataContainer {
     }
 
     public void addRouteProvider(RouteProvider provider) {
+        if (applicationData.routeProviders.contains(provider)){
+            return;
+        }
         applicationData.routeProviders.add(provider);
         try {
             parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
+    }
+
+    public Network getNetwork(String name){
+        Network network=new Network(name);
+        for (Network network1:applicationData.networks){
+            if (network1.equals(network))
+                return network1;
+        }
+        return null;
+    }
+
+    public RouteProvider getRouteProvider(String name){
+        RouteProvider provider=new RouteProvider(name);
+        for (RouteProvider provider1:applicationData.routeProviders){
+            if (provider1.equals(provider))
+                return provider1;
+        }
+        return null;
     }
 
     public void removeNetwork(Network network) {

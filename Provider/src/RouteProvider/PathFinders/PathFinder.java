@@ -8,13 +8,15 @@ import RouteProvider.RouteProvider;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
 @XmlRootElement(name = "pathFinder")
-public abstract class PathFinder {
+@XmlSeeAlso({MinimalCostPathFinder.class,MinimalCountPathFinder.class,MinimalTimePathFinder.class})
+public class PathFinder {
 
     @XmlElement
     public String name;
@@ -46,20 +48,26 @@ public abstract class PathFinder {
         return null;
     }
 
+    LinkedHashSet<Integer> integers=new LinkedHashSet<>();
+
     public void printWay(int v) {
         if (!pred.containsKey(v)) {
             return;
         }
         printWay(pred.get(v));
+        integers.add(pred.get(v));
         System.out.printf("%d ", v);
     }
 
-    public void printData(Network network, int end) {
+    public LinkedHashSet<Integer> printData(Network network, int end) {
         for (PathElement v : network.pathElements) {
             if (dist.get(v.ID) != INF && v.ID == end) {
                 System.out.printf("%d ", dist.get(v.ID));
             }
         }
+
+        integers=new LinkedHashSet<>();
+
         System.out.println("\n");
         for (PathElement v : network.pathElements) {
             if (v.ID!=end)
@@ -68,8 +76,8 @@ public abstract class PathFinder {
                 System.out.printf("%d: ", v.ID);
                 printWay(v.ID);
             }
-            //System.out.println("\n");
         }
+        return integers;
     }
 
     @Override

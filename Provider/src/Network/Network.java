@@ -1,6 +1,5 @@
 package Network;
 import Helpers.ProjectValuesGenerator;
-import PathElements.AbstractClasses.ActiveElement;
 import PathElements.AbstractClasses.PathElement;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -56,7 +55,6 @@ public class Network {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
         result = prime * result + (networkName == null ? 0 : networkName.hashCode());
         return result;
     }
@@ -70,7 +68,7 @@ public class Network {
         if (getClass() != obj.getClass())
             return false;
         Network other = (Network) obj;
-        if (id != other.id || networkName != other.networkName)
+        if (!networkName.equals(other.networkName))
             return false;
         return true;
     }
@@ -91,7 +89,7 @@ public class Network {
     public PathElement getElementByIP(String IP) {
         for (PathElement element : pathElements) {
             try {
-                ActiveElement activeElement = (ActiveElement) element;
+                PathElement activeElement = element;
                 if (activeElement.IP.ip.equals(IP))
                     return activeElement;
             } catch (ClassCastException e) {

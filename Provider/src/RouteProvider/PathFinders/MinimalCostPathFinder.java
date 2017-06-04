@@ -1,15 +1,14 @@
 package RouteProvider.PathFinders;
 
-import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.ConnectionData;
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.Route;
 import Network.Network;
-import PathElements.AbstractClasses.ActiveElement;
 import PathElements.AbstractClasses.PathElement;
 
-import java.util.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "MinimalCostPathFinder")
 public class MinimalCostPathFinder extends PathFinder {
 
     public MinimalCostPathFinder() {

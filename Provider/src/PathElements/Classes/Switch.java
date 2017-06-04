@@ -1,7 +1,18 @@
 package PathElements.Classes;
 
-import PathElements.AbstractClasses.ActiveElement;
+import Helpers.IPAddress;
+import PathElements.AbstractClasses.PathElement;
 
-public class Switch extends ActiveElement {
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "SwitchElement")
+public class Switch extends PathElement {
+
+    public Switch(){
+
+    }
+
+    public Switch(int ID, IPAddress IP) {
+        super(ID, IP);
+    }
 }

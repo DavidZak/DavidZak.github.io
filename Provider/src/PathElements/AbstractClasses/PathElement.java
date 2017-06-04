@@ -1,23 +1,56 @@
 package PathElements.AbstractClasses;
 
 import Helpers.ConnectionData;
+import Helpers.IPAddress;
+import PathElements.Classes.*;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.Set;
 
 @XmlRootElement(name = "Element")
-@XmlType(propOrder = {"ID", "connections"})
-public abstract class PathElement implements Comparable {
+@XmlType(propOrder = {"ID", "IP", "connections"})
+@XmlSeeAlso({Cable.class, FireWall.class, Hub.class, PC.class, Router.class,Switch.class})
+public class PathElement implements Comparable {
 
     @XmlElement(name = "ID")
     public int ID;
 
+    @XmlElement(name = "IP")
+    public IPAddress IP;
+
     @XmlElementWrapper
     @XmlElement(name = "connection")
     public Set<ConnectionData> connections;
+
+    public PathElement(){
+        this.ID=-1;
+        this.IP=null;
+        this.connections=null;
+    }
+
+    public PathElement(int ID,IPAddress IP){
+        this.ID=ID;
+        this.IP=IP;
+        this.connections=null;
+    }
+
+    public PathElement(int ID){
+        this.ID=ID;
+        this.IP=null;
+        this.connections=null;
+    }
+
+    public PathElement(IPAddress IP){
+        this.ID=-1;
+        this.IP=IP;
+        this.connections=null;
+    }
+
+    public PathElement(int ID,IPAddress IP, Set<ConnectionData> connections){
+        this.ID=ID;
+        this.IP=IP;
+        this.connections=connections;
+    }
 
     @Override
     public int compareTo(Object o) {

@@ -1,20 +1,17 @@
 package Main;
 
 import ApplicationFacade.ApplicationFacade;
-import Helpers.ApplicationData.ApplicationData;
 import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.ConnectionData;
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.IPAddress;
 import Network.Network;
-import PathElements.AbstractClasses.ActiveElement;
 import PathElements.AbstractClasses.PathElement;
 import PathElements.Classes.Switch;
 import RouteProvider.PathFinders.MinimalCostPathFinder;
 import RouteProvider.PathFinders.MinimalTimePathFinder;
 import RouteProvider.PathFinders.PathFinder;
 import RouteProvider.RouteProvider;
-import UIFacade.CommandParser.CommandParser;
 import UIFacade.CommandPattern.Command;
 import UIFacade.CommandPattern.RouteByIDCommand;
 import UIFacade.CommandPattern.RouteByIPCommand;
@@ -28,23 +25,11 @@ public class Main {
     public static void main(String[] args) throws RouteNotFoundException {
 
         //UIFacade.getInstance().readInput();
-        ActiveElement pathElement1 = new Switch();
-        ActiveElement pathElement2 = new Switch();
-        ActiveElement pathElement3 = new Switch();
-        ActiveElement pathElement4 = new Switch();
-        ActiveElement pathElement5 = new Switch();
-
-        pathElement1.ID = 1;
-        pathElement2.ID = 2;
-        pathElement3.ID = 3;
-        pathElement4.ID = 4;
-        pathElement5.ID = 5;
-
-        pathElement1.IP = new IPAddress("11.11.11.11");
-        pathElement2.IP = new IPAddress("22.22.22.22");
-        pathElement3.IP = new IPAddress("33.33.33.33");
-        pathElement4.IP = new IPAddress("44.44.44.44");
-        pathElement5.IP = new IPAddress("55.55.55.55");
+        PathElement pathElement1 = new Switch(1,new IPAddress("11.11.11.11"));
+        PathElement pathElement2 = new Switch(2,new IPAddress("21.11.11.11"));
+        PathElement pathElement3 = new Switch(3,new IPAddress("31.11.11.11"));
+        PathElement pathElement4 = new Switch(4,new IPAddress("41.11.11.11"));
+        PathElement pathElement5 = new Switch(5,new IPAddress("51.11.11.11"));
 
         Set<ConnectionData> pathElements1 = new HashSet<>();
         Set<ConnectionData> pathElements2 = new HashSet<>();
@@ -94,12 +79,12 @@ public class Main {
         Command command = new RouteByIDCommand(applicationFacade);
         Command command1 = new RouteByIPCommand(applicationFacade);
 
-        ApplicationDataContainer container = ApplicationDataContainer.getInstance();
-        container.readData();
-        container.addNetwork(network);
-        container.addRouteProvider(provider);
+//        ApplicationDataContainer container = ApplicationDataContainer.getInstance();
+ //       container.readData();
+   //     container.addNetwork(network);
+     //   container.addRouteProvider(provider);
 
-        UIFacade uiFacade = new UIFacade(command, command1);
+        UIFacade uiFacade = new UIFacade();
         uiFacade.readInput();
     }
 }
