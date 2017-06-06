@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name="provider")
 @XmlType(propOrder = {"providerName","pathFinder"})
-public class RouteProvider {
+public class RouteProvider {        //класс провайдер, имеет ссылку на конкретный поисковик пути
 
     @XmlElement(name = "providerName")
     public String providerName;
@@ -28,7 +28,7 @@ public class RouteProvider {
     public RouteProvider() {
         this.providerName = ProjectValuesGenerator.generateString();
         this.pathFinder = null;
-        System.out.println(this.providerName);
+        //System.out.println(this.providerName);
     }
 
     public RouteProvider(String providerName){
@@ -41,11 +41,11 @@ public class RouteProvider {
         this.pathFinder = pathFinder;
     }
 
-    public Route getRoute(int firstID, int secondID, Network network) throws RouteNotFoundException {
+    public Route getRoute(int firstID, int secondID, Network network) throws RouteNotFoundException {   //поиск маршрута по ID
         return pathFinder.findPath(firstID, secondID, network);
     }
 
-    public Route getRoute(IPAddress firstIP, IPAddress secondIP, Network network) throws RouteNotFoundException {
+    public Route getRoute(IPAddress firstIP, IPAddress secondIP, Network network) throws RouteNotFoundException {  //поиск маршрута по IP
         return pathFinder.findPath(firstIP.ip, secondIP.ip, network);
     }
 

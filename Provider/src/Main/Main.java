@@ -1,7 +1,6 @@
 package Main;
 
 import ApplicationFacade.ApplicationFacade;
-import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.ConnectionData;
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.IPAddress;
@@ -79,12 +78,13 @@ public class Main {
         Command command = new RouteByIDCommand(applicationFacade);
         Command command1 = new RouteByIPCommand(applicationFacade);
 
-//        ApplicationDataContainer container = ApplicationDataContainer.getInstance();
- //       container.readData();
-   //     container.addNetwork(network);
+     //   ApplicationDataContainer container = ApplicationDataContainer.getInstance();
+      //  container.readData();
+      //  container.addNetwork(network);
      //   container.addRouteProvider(provider);
 
         UIFacade uiFacade = new UIFacade();
         uiFacade.readInput();
+
     }
 }

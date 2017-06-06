@@ -11,7 +11,7 @@ import java.util.List;
 
 @XmlRootElement(name="network")
 @XmlType(propOrder = {"id","networkName","pathElements"})
-public class Network {
+public class Network {      //класс сеть, хранит список элементов
 
     @XmlElement(name = "id")
     public int id;
@@ -37,7 +37,7 @@ public class Network {
 
     public Network() {
         this.networkName = ProjectValuesGenerator.generateString();
-        System.out.println(this.networkName);
+        //System.out.println(this.networkName);
         this.pathElements = new ArrayList<>();
     }
 
@@ -83,7 +83,7 @@ public class Network {
         return result;
     }
 
-    public PathElement getElementByID(int ID) {
+    public PathElement getElementByID(int ID) {         //получить элемент по ID
         for (PathElement element : pathElements) {
             if (element.ID == ID)
                 return element;
@@ -91,7 +91,7 @@ public class Network {
         return null;
     }
 
-    public PathElement getElementByIP(String IP) {
+    public PathElement getElementByIP(String IP) {          //получить элемент по IP
         for (PathElement element : pathElements) {
             try {
                 PathElement activeElement = element;

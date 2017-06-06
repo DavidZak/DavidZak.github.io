@@ -1,9 +1,11 @@
 package ApplicationFacade;
 
+import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.IPAddress;
 import Helpers.Route;
 import Network.Network;
+import PathElements.AbstractClasses.PathElement;
 import RouteProvider.RouteProvider;
 
 public class ApplicationFacade {
@@ -14,6 +16,7 @@ public class ApplicationFacade {
     private int secondID;
     private IPAddress firstIP;
     private IPAddress secondIP;
+    private PathElement element;
 
     public Network getNetwork() {
         return network;
@@ -23,6 +26,23 @@ public class ApplicationFacade {
         this.network = network;
     }
 
+    //constructor for adding Network
+    public ApplicationFacade(Network network) {
+        this.network = network;
+    }
+
+    //constructor for adding Provider
+    public ApplicationFacade(RouteProvider provider) {
+        this.provider = provider;
+    }
+
+    //constructor for adding PathElement
+    public ApplicationFacade(Network network, PathElement element) {
+        this.network = network;
+        this.element = element;
+    }
+
+    //constructors for find route commands
     public ApplicationFacade(Network network, RouteProvider provider, int firstID, int secondID) {
         this.provider = provider;
         this.network = network;
@@ -55,5 +75,37 @@ public class ApplicationFacade {
             e.printStackTrace();
         }
         return route;
+    }
+    //методы для манипуляции с данными
+    public void addPathElement() {
+        ApplicationDataContainer.getInstance().addPathElement(network, element);
+    }
+
+    public void removePathElement() {
+        ApplicationDataContainer.getInstance().removePathElement(network, element);
+    }
+
+    public void addNetwork() {
+        ApplicationDataContainer.getInstance().addNetwork(network);
+    }
+
+    public void addRouteProvider() {
+        ApplicationDataContainer.getInstance().addRouteProvider(provider);
+    }
+
+    public Network getNetworkByName() {
+        return ApplicationDataContainer.getInstance().getNetwork(network.networkName);
+    }
+
+    public RouteProvider getRouteProviderByName() {
+        return ApplicationDataContainer.getInstance().getRouteProvider(provider.providerName);
+    }
+
+    public void removeNetwork() {
+        ApplicationDataContainer.getInstance().removeNetwork(network);
+    }
+
+    public void removeRouteProvider() {
+        ApplicationDataContainer.getInstance().removeRouteProvider(provider);
     }
 }

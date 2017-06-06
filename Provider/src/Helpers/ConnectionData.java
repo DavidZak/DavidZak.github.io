@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "connection")
 @XmlType(propOrder = {"pathElementID", "cost","timeDelay"})
-public class ConnectionData implements Comparable{
+public class ConnectionData implements Comparable {     //класс хранящий информацию о связи с элементом
 
     @XmlElement(name = "pathElementID")
     public int pathElementID;

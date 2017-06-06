@@ -1,10 +1,11 @@
 package RouteProvider.PathFinders;
 
-import Helpers.*;
+import Helpers.ConnectionData;
 import Helpers.Exceptions.RouteNotFoundException;
+import Helpers.ProjectFinalsContainer;
+import Helpers.Route;
 import Network.Network;
 import PathElements.AbstractClasses.PathElement;
-import RouteProvider.RouteProvider;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,17 +16,17 @@ import java.util.Map;
 import java.util.Set;
 
 @XmlRootElement(name = "pathFinder")
-@XmlSeeAlso({MinimalCostPathFinder.class,MinimalCountPathFinder.class,MinimalTimePathFinder.class})
-public class PathFinder {
+@XmlSeeAlso({MinimalCostPathFinder.class, MinimalCountPathFinder.class, MinimalTimePathFinder.class})
+public class PathFinder {       //базовый поисковик пути
 
     @XmlElement
     public String name;
 
-    transient Map<PathElement, Set<ConnectionData>> adj;
-    transient Map<Integer, Boolean> usedMap;
-    transient Map<Integer, Integer> dist;
-    transient Map<Integer, Integer> pred;
-    transient int INF = ProjectFinalsContainer.INF;
+    transient Map<PathElement, Set<ConnectionData>> adj;    //список смежных элементов для данного элемента
+    transient Map<Integer, Boolean> usedMap;    //маркер, показывающий просмотрен данный элемент или нет
+    transient Map<Integer, Integer> dist;   //вес (cost или time)
+    transient Map<Integer, Integer> pred;   //предыдущие элементы
+    transient int INF = ProjectFinalsContainer.INF;     //бесконечность
 
     public PathFinder() {
         adj = new HashMap<>();
@@ -50,7 +51,7 @@ public class PathFinder {
 
     LinkedHashSet<Integer> integers = new LinkedHashSet<>();
 
-    public void printWay(int v) {
+    public void printWay(int v) {   //вывод пути
         if (!pred.containsKey(v)) {
             return;
         }
@@ -59,7 +60,7 @@ public class PathFinder {
         System.out.printf("%d ", v);
     }
 
-    public LinkedHashSet<Integer> printData(Network network, int end) {
+    public LinkedHashSet<Integer> printData(Network network, int end) { //вывод
         for (PathElement v : network.pathElements) {
             if (dist.get(v.ID) != INF && v.ID == end) {
                 System.out.printf("%d ", dist.get(v.ID));

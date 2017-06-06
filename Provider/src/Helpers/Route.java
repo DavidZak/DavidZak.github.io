@@ -1,11 +1,10 @@
 package Helpers;
 
-import PathElements.AbstractClasses.PathElement;
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class Route {
+public class Route {     //путь состоит из элементов
+
     private Set<Integer> pathElementsInRoute;
 
     public Set<Integer> getPathElementsInRoute() {

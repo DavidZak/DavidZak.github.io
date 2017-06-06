@@ -12,7 +12,7 @@ import java.util.Set;
 
 @XmlRootElement(name = "Data")
 @XmlType(propOrder = {"networks", "routeProviders"})
-public class ApplicationData {
+public class ApplicationData {  //все данные приложения для хранения
 
     @XmlElement(name="network")
     @XmlElementWrapper

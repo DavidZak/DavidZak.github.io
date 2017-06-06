@@ -1,6 +1,6 @@
 package UIFacade.CommandPattern;
 
-public interface Command {
+public interface Command {  //интерфейс команда
 
     void execute();
 

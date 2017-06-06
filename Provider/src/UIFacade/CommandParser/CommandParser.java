@@ -5,9 +5,9 @@ import Helpers.ProjectFinalsContainer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CommandParser {
+public class CommandParser {    //парсер введенной команды
 
-    private String[] parts;
+    private String[] parts;     //разбитые части команды
 
     public void parseString(String stringToParse) {
 
@@ -39,13 +39,13 @@ public class CommandParser {
         this.parts = parts;
     }
 
-    public boolean checkIDRegExp(String string){
+    public boolean checkIDRegExp(String string){        //проверка на соответствие ID
         Pattern p = Pattern.compile("^[1-9]\\d*$");
         Matcher m = p.matcher(string);
         return m.matches();
     }
 
-    public boolean checkIPRegExp(String string){
+    public boolean checkIPRegExp(String string){        //проверка на соответствие IP
         Pattern p = Pattern.compile("((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)");
         Matcher m = p.matcher(string);
         return m.matches();
