@@ -38,6 +38,10 @@ public class ApplicationData {
        for (Network network:networks){
            string+=network.toString();
        }
+       for (RouteProvider provider:routeProviders)
+       {
+           string+=provider.toString();
+       }
        string+=" ]@";
        return string;
     }

@@ -75,7 +75,12 @@ public class Network {
 
     @Override
     public String toString() {
-        return "Network#" + id + "-" + networkName;
+        String result = "[Network: id:" + id + "\n name: " + networkName + "\n PathElements: ";
+        for (PathElement element : pathElements) {
+            result += " " + element.toString();
+        }
+        result += "]";
+        return result;
     }
 
     public PathElement getElementByID(int ID) {

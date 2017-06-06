@@ -1,9 +1,7 @@
 package UIFacade;
 
 import ApplicationFacade.ApplicationFacade;
-import Helpers.ApplicationData.ApplicationData;
 import Helpers.ApplicationData.ApplicationDataContainer;
-import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.IPAddress;
 import Helpers.ProjectFinalsContainer;
 import Network.Network;
@@ -19,30 +17,28 @@ import java.io.InputStreamReader;
 
 public class UIFacade {
 
+    ApplicationDataContainer dataContainer;
+
     Command routeByIDCommand;
     Command routeByIPCommand;
 
     public UIFacade() {
+        dataContainer=ApplicationDataContainer.getInstance();
+        dataContainer.readData();
     }
 
     public void executeByID() {
-        try {
-            routeByIDCommand.execute();
-        } catch (RouteNotFoundException e) {
-            e.printStackTrace();
-        }
+        routeByIDCommand.execute();
     }
 
     public void executeByIP() {
-        try {
-            routeByIPCommand.execute();
-        } catch (RouteNotFoundException e) {
-            e.printStackTrace();
-        }
+        routeByIPCommand.execute();
     }
 
-    public void readInput() throws RouteNotFoundException {
+    public void readInput() {
+        dataContainer.showApplicationData();
         System.out.println(ProjectFinalsContainer.INPUT_COMMAND);
+        System.out.println(ProjectFinalsContainer.SELECT_COMMAND_HELPER);
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String inputString = null;
@@ -54,18 +50,19 @@ public class UIFacade {
         executeCommand(inputString);
     }
 
-    private void executeCommand(String command) throws RouteNotFoundException {
+    private void executeCommand(String command) {
         CommandParser parser = new CommandParser();
         parser.parseString(command);
 
-        ApplicationDataContainer.getInstance().readData();
-        ApplicationDataContainer data = ApplicationDataContainer.getInstance();
+        //ApplicationDataContainer data = ApplicationDataContainer.getInstance();
+        //data.readData();
+        //data.showApplicationData();
 
         String[] parts = parser.getParts();
         if (parts != null) {
 
-            Network network = data.getNetwork(parts[1]);
-            RouteProvider provider = data.getRouteProvider(parts[2]);
+            Network network = dataContainer.getNetwork(parts[1]);
+            RouteProvider provider = dataContainer.getRouteProvider(parts[2]);
 
             System.out.println(network);
             System.out.println(provider);

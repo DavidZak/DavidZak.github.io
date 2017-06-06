@@ -15,5 +15,8 @@ public class ProjectFinalsContainer {
     //Final IO strings
     public static final String INPUT_COMMAND = "Введите команду";
     public static final String INPUT_COMMAND_TRY_AGAIN = "Попробуйте снова";
-    public static final String PARSING_FAILED="Не удалось распознать команду";
+    public static final String PARSING_FAILED = "Не удалось распознать команду";
+
+    public static final String SELECT_COMMAND_HELPER = "route/route-ip NetworkName " +
+            "ProviderName firstElementID/IP secondElementID/IP";
 }

@@ -51,7 +51,8 @@ public class RouteProvider {
 
     @Override
     public String toString() {
-        return providerName;
+        String result = "Route Provider: name: " + providerName+"\n pathFinder: " + pathFinder.toString();
+        return result;
     }
 
     @Override

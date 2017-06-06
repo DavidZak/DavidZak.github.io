@@ -1,7 +1,6 @@
 package UIFacade.CommandPattern;
 
 import ApplicationFacade.ApplicationFacade;
-import Helpers.Exceptions.RouteNotFoundException;
 
 public class RouteByIPCommand implements Command {
     ApplicationFacade applicationFacade;
@@ -11,7 +10,7 @@ public class RouteByIPCommand implements Command {
     }
 
     @Override
-    public void execute() throws RouteNotFoundException {
+    public void execute() {
         applicationFacade.getRouteByIP();
     }
 }

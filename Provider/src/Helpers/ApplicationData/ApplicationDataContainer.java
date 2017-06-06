@@ -1,7 +1,9 @@
 package Helpers.ApplicationData;
 
+import Helpers.IPAddress;
 import Helpers.ProjectFinalsContainer;
 import Network.Network;
+import PathElements.AbstractClasses.PathElement;
 import RouteProvider.RouteProvider;
 import XMLParser.JaxbParser;
 import XMLParser.Parser;
@@ -24,6 +26,14 @@ public class ApplicationDataContainer {
 
     public ApplicationData applicationData = new ApplicationData();
     public Parser parser = new JaxbParser();
+
+    public void showApplicationData(){
+        System.out.println(applicationData);
+    }
+
+    public void addPathElement(Network network, String name, IPAddress IP){
+
+    }
 
     public void addNetwork(Network network) {
         if (applicationData.networks.contains(network)) {

@@ -37,11 +37,23 @@ public class ApplicationFacade {
         this.secondIP = secondIP;
     }
 
-    public Route getRouteByID() throws RouteNotFoundException {
-        return provider.getRoute(firstID, secondID, network);
+    public Route getRouteByID() {
+        Route route = null;
+        try {
+            route = provider.getRoute(firstID, secondID, network);
+        } catch (RouteNotFoundException e) {
+            e.printStackTrace();
+        }
+        return route;
     }
 
-    public Route getRouteByIP() throws RouteNotFoundException {
-        return provider.getRoute(firstIP, secondIP, network);
+    public Route getRouteByIP() {
+        Route route = null;
+        try {
+            route = provider.getRoute(firstIP, secondIP, network);
+        } catch (RouteNotFoundException e) {
+            e.printStackTrace();
+        }
+        return route;
     }
 }
