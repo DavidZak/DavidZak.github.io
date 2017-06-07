@@ -50,4 +50,10 @@ public class CommandParser {    //парсер введенной команды
         Matcher m = p.matcher(string);
         return m.matches();
     }
+
+    public boolean checkNameRegExp(String playerNameString) {
+        Pattern p = Pattern.compile("^[A-Z][a-z]+$");
+        Matcher m = p.matcher(playerNameString);
+        return m.matches();
+    }
 }

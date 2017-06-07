@@ -84,7 +84,7 @@ public class Main {
      //   container.addRouteProvider(provider);
 
         UIFacade uiFacade = new UIFacade();
-        uiFacade.readInput();
+        //uiFacade.readInput();
 
     }
 }
