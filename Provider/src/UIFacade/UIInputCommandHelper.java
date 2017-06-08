@@ -5,6 +5,10 @@ import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.IPAddress;
 import Helpers.ProjectFinalsContainer;
 import Network.Network;
+import RouteProvider.PathFinders.MinimalCostPathFinder;
+import RouteProvider.PathFinders.MinimalCountPathFinder;
+import RouteProvider.PathFinders.MinimalTimePathFinder;
+import RouteProvider.PathFinders.PathFinder;
 import RouteProvider.RouteProvider;
 import UIFacade.CommandParser.CommandParser;
 import UIFacade.CommandPattern.*;
@@ -12,6 +16,7 @@ import UIFacade.CommandPattern.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.Provider;
 
 public class UIInputCommandHelper {
 
@@ -23,6 +28,7 @@ public class UIInputCommandHelper {
     Command removeNetworkCommand;
     Command removeRouteProviderCommand;
     Command removePathElementCommand;
+    Command addPathFinderCommand;
 
     ApplicationDataContainer dataContainer;
 
@@ -125,14 +131,63 @@ public class UIInputCommandHelper {
 
         RouteProvider provider = new RouteProvider(inputString);
 
+        readAddPathFinder(provider);
+
         ApplicationFacade facade = new ApplicationFacade(provider);
         addRouteProviderCommand = new AddRouteProviderCommand(facade);
         addRouteProviderCommand.execute();
         readChooseCommandNumberCommand();
     }
 
-    public void readAddPathFinder(){
+    public void readAddPathFinder(RouteProvider provider) {
+        System.out.println(ProjectFinalsContainer.PATH_FINDER_ADDING_PROCESS);
+        System.out.println(ProjectFinalsContainer.ENTER_NAME);
 
+        String inputString = readInput();
+        while (!parser.checkNameRegExp(inputString)) {
+            inputString = readInput();
+        }
+
+        PathFinder pathFinder = null;
+
+        readPathFinderType(provider, pathFinder, inputString);
+    }
+
+    void readPathFinderType(RouteProvider provider, PathFinder pathFinder, String inputString) {
+        System.out.println(ProjectFinalsContainer.CHOOSE_PATH_FINDER_TYPE);
+
+        boolean notANumber = false;
+
+        String commandNumberString = readInput();
+        try {
+            int commandNumber = Integer.parseInt(commandNumberString);
+            switch (commandNumber) {
+                case 1: {
+                    pathFinder = new MinimalCostPathFinder(inputString);
+                    provider.pathFinder=pathFinder;
+                }
+                break;
+                case 2:{
+                    pathFinder = new MinimalTimePathFinder(inputString);
+                    provider.pathFinder=pathFinder;
+                }
+                    break;
+                case 3:{
+                    pathFinder = new MinimalCountPathFinder(inputString);
+                    provider.pathFinder=pathFinder;
+                }
+                    break;
+                default:
+                    notANumber = true;
+                    break;
+            }
+        } catch (NumberFormatException e) {
+            notANumber = true;
+        }
+        while (notANumber) {
+            System.out.println(ProjectFinalsContainer.INPUT_COMMAND_TRY_AGAIN);
+            readPathFinderType(provider, pathFinder, inputString);
+        }
     }
 
     public void readAddPathElementCommand() {        //для добавления нового элемента

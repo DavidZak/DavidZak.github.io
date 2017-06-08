@@ -6,6 +6,7 @@ import Helpers.IPAddress;
 import Helpers.Route;
 import Network.Network;
 import PathElements.AbstractClasses.PathElement;
+import RouteProvider.PathFinders.PathFinder;
 import RouteProvider.RouteProvider;
 
 public class ApplicationFacade {
@@ -17,6 +18,7 @@ public class ApplicationFacade {
     private IPAddress firstIP;
     private IPAddress secondIP;
     private PathElement element;
+    private PathFinder pathFinder;
 
     public Network getNetwork() {
         return network;
@@ -29,6 +31,12 @@ public class ApplicationFacade {
     //constructor for adding Network
     public ApplicationFacade(Network network) {
         this.network = network;
+    }
+
+    //for adding PathFinder
+    public ApplicationFacade(RouteProvider provider, PathFinder pathFinder) {
+        this.provider = provider;
+        this.pathFinder = pathFinder;
     }
 
     //constructor for adding Provider
@@ -107,5 +115,9 @@ public class ApplicationFacade {
 
     public void removeRouteProvider() {
         ApplicationDataContainer.getInstance().removeRouteProvider(provider);
+    }
+
+    public void addPathFinder(){
+        ApplicationDataContainer.getInstance().addPathFinder(provider, pathFinder);
     }
 }
