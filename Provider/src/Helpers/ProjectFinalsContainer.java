@@ -34,11 +34,26 @@ public class ProjectFinalsContainer {   //контейнер констант
 
     public static final String CONNECTION_DATA_ADDING_PROCESS = "Добавление новой связи";
 
+    public static final String CHOOSE_PATH_ELEMENT_ID = "Выберите ID элемента \n";
+
     public static final String PATH_FINDER_ADDING_PROCESS = "Добавление поисковика";
     public static final String CHOOSE_PATH_FINDER_TYPE = "Выберите тип поисковика: " +
             "\n 1 - для поиска минимального пути по весу " +
             "\n 2 - для поиска минимального пути по времени " +
             "\n 3 - для поиска минимального пути по количеству промежуточных элементов \n";
+
+    public static final String CHOOSE_PATH_ELEMENT_TYPE = "Выберите тип команды: " +
+            "\n 1 - Cable " +
+            "\n 2 - Hub " +
+            "\n 3 - PC " +
+            "\n 4 - Firewall  " +
+            "\n 5 - Switch " +
+            "\n 6 - Router \n";
+
+    public static final String CHOOSE_NETWORK = "Выберите сеть: \n";
+
+    public static final String INPUT_CONNECTION_DATA_PARAMETERS = "Введите связанные элементы " +
+            "\n в формате \" id cost time\" \n ";
 
     public static final String GO_TO_MAIN_COMMAND = "Нажмите 0 для выхода в меню выбора команд";
 

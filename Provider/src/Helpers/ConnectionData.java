@@ -43,8 +43,8 @@ public class ConnectionData implements Comparable {     //класс храня�
         this.timeDelay=0;
     }
 
-    public ConnectionData(PathElement pathElement, double cost, double timeDelay) {
-        this.pathElementID = pathElement.ID;
+    public ConnectionData(int ID, double cost, double timeDelay) {
+        this.pathElementID = ID;
         this.cost = cost;
         this.timeDelay = timeDelay;
     }

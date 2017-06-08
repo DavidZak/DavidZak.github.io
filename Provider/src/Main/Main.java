@@ -36,18 +36,18 @@ public class Main {
         Set<ConnectionData> pathElements4 = new HashSet<>();
         Set<ConnectionData> pathElements5 = new HashSet<>();
 
-        pathElements1.add(new ConnectionData(pathElement2, 17, 15));
-        pathElements1.add(new ConnectionData(pathElement3, 13, 12));
+        pathElements1.add(new ConnectionData(pathElement2.ID, 17, 15));
+        pathElements1.add(new ConnectionData(pathElement3.ID, 13, 12));
 
-        pathElements2.add(new ConnectionData(pathElement3, 1, 5));
-        pathElements2.add(new ConnectionData(pathElement5, 10, 2));
+        pathElements2.add(new ConnectionData(pathElement3.ID, 1, 5));
+        pathElements2.add(new ConnectionData(pathElement5.ID, 10, 2));
 
-        pathElements3.add(new ConnectionData(pathElement2, 1, 13));
-        pathElements3.add(new ConnectionData(pathElement5, 2, 8));
+        pathElements3.add(new ConnectionData(pathElement2.ID, 1, 13));
+        pathElements3.add(new ConnectionData(pathElement5.ID, 2, 8));
 
-        pathElements4.add(new ConnectionData(pathElement1, 12, 6));
+        pathElements4.add(new ConnectionData(pathElement1.ID, 12, 6));
 
-        pathElements5.add(new ConnectionData(pathElement4, 5, 7));
+        pathElements5.add(new ConnectionData(pathElement4.ID, 5, 7));
 
         pathElement1.connections = pathElements1;
         pathElement2.connections = pathElements2;

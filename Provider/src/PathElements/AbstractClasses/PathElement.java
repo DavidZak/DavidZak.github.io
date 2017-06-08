@@ -5,6 +5,7 @@ import Helpers.IPAddress;
 import PathElements.Classes.*;
 
 import javax.xml.bind.annotation.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @XmlRootElement(name = "Element")
@@ -25,13 +26,13 @@ public class PathElement implements Comparable {        //базовый кла�
     public PathElement() {
         this.ID = -1;
         this.IP = null;
-        this.connections = null;
+        this.connections = new HashSet<>();
     }
 
     public PathElement(int ID, IPAddress IP) {
         this.ID = ID;
         this.IP = IP;
-        this.connections = null;
+        this.connections = new HashSet<>();
     }
 
     public PathElement(int ID) {

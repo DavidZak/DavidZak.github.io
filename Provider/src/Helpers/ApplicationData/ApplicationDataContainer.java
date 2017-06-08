@@ -39,7 +39,8 @@ public class ApplicationDataContainer {     //класс для манипуля
         if (network.pathElements.contains(element))
             return;
 
-        element.ID = getNetwork(network.networkName).pathElements.size();
+        network=getNetwork(network.networkName);
+        element.ID = network.pathElements.size();
         network.pathElements.add(element);
         removeNetwork(network);
         addNetwork(network);
@@ -105,7 +106,6 @@ public class ApplicationDataContainer {     //класс для манипуля
             e.printStackTrace();
         }
     }
-
 
     public Network getNetwork(String name) {
         Network network = new Network(name);
