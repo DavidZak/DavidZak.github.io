@@ -28,7 +28,6 @@ public class UIInputCommandHelper {
     Command removeNetworkCommand;
     Command removeRouteProviderCommand;
     Command removePathElementCommand;
-    Command addPathFinderCommand;
 
     ApplicationDataContainer dataContainer;
 
