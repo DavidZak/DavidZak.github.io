@@ -2,7 +2,6 @@ package RouteProvider;
 
 import Helpers.Exceptions.RouteNotFoundException;
 import Helpers.IPAddress;
-import Helpers.ProjectValuesGenerator;
 import Helpers.Route;
 import Network.Network;
 import RouteProvider.PathFinders.PathFinder;
@@ -26,7 +25,7 @@ public class RouteProvider {        //класс провайдер, имеет 
     }
 
     public RouteProvider() {
-        this.providerName = ProjectValuesGenerator.generateString();
+        this.providerName = "";
         this.pathFinder = null;
         //System.out.println(this.providerName);
     }

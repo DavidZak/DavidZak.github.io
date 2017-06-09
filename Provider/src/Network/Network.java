@@ -1,5 +1,4 @@
 package Network;
-import Helpers.ProjectValuesGenerator;
 import PathElements.AbstractClasses.PathElement;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -36,7 +35,7 @@ public class Network {      //класс сеть, хранит список э�
     }
 
     public Network() {
-        this.networkName = ProjectValuesGenerator.generateString();
+        this.networkName = "";
         //System.out.println(this.networkName);
         this.pathElements = new ArrayList<>();
     }

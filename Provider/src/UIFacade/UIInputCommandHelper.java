@@ -144,7 +144,7 @@ public class UIInputCommandHelper {
         readChooseCommandNumberCommand();
     }
 
-    public void readAddPathFinder(RouteProvider provider) {
+    public void readAddPathFinder(RouteProvider provider) {     //добавление поисковика
         System.out.println(ProjectFinalsContainer.PATH_FINDER_ADDING_PROCESS);
         System.out.println(ProjectFinalsContainer.ENTER_NAME);
 
@@ -158,6 +158,7 @@ public class UIInputCommandHelper {
         readPathFinderType(provider, pathFinder, inputString);
     }
 
+    //считать тип поисковика
     void readPathFinderType(RouteProvider provider, PathFinder pathFinder, String inputString) {
         System.out.println(ProjectFinalsContainer.CHOOSE_PATH_FINDER_TYPE);
 
@@ -298,7 +299,7 @@ public class UIInputCommandHelper {
         }
     }
 
-    void readIP(PathElement pathElement) {
+    void readIP(PathElement pathElement) {          //добавление IP
         System.out.println(ProjectFinalsContainer.ENTER_IP);
         String string = readInput();
         while (!parser.checkIPRegExp(string)) {
@@ -307,7 +308,7 @@ public class UIInputCommandHelper {
         pathElement.IP = new IPAddress(string);
     }
 
-    void readConnectionData(PathElement pathElement) {
+    void readConnectionData(PathElement pathElement) {      //добавление связи
         System.out.println(ProjectFinalsContainer.INPUT_CONNECTION_DATA_PARAMETERS);
         System.out.println(ProjectFinalsContainer.GO_TO_MAIN_COMMAND);
 
@@ -346,7 +347,7 @@ public class UIInputCommandHelper {
         removeNetworkCommand = new RemoveNetworkCommand(facade);
         removeNetworkCommand.execute();
         readChooseCommandNumberCommand();
-    }
+    }       //удаление сети
 
     public void readRemoveRouteProviderCommand() {   //для удаления провайдера
         System.out.println(ProjectFinalsContainer.ROUTE_PROVIDER_REMOVING_PROCESS);
@@ -369,7 +370,7 @@ public class UIInputCommandHelper {
         removeRouteProviderCommand = new RemoveRouteProviderCommand(facade);
         removeRouteProviderCommand.execute();
         readChooseCommandNumberCommand();
-    }
+    }       //удаление провайдера
 
     public void readRemovePathElementCommand() {     //для удаления элемента
         System.out.println(ProjectFinalsContainer.PATH_ELEMENT_REMOVING_PROCESS);
@@ -387,7 +388,7 @@ public class UIInputCommandHelper {
 
     }
 
-    void readPathElementID(Network network){
+    void readPathElementID(Network network){        //чтение ID
         System.out.println(ProjectFinalsContainer.CHOOSE_PATH_ELEMENT_ID);
 
         String inputString = readInput();
@@ -475,7 +476,7 @@ public class UIInputCommandHelper {
         readGetRouteCommand();
     }
 
-    public String readInput() {
+    public String readInput() {     //считываем вводимые данные
 
         initReader();
 
