@@ -1,5 +1,6 @@
 package Helpers.ApplicationData;
 
+import Helpers.Exceptions.CustomJaxbException;
 import Helpers.ProjectFinalsContainer;
 import Network.Network;
 import PathElements.AbstractClasses.PathElement;
@@ -39,7 +40,7 @@ public class ApplicationDataContainer {     //класс для манипуля
         if (network.pathElements.contains(element))
             return;
 
-        network=getNetwork(network.networkName);
+        network = getNetwork(network.networkName);
         element.ID = network.pathElements.size();
         network.pathElements.add(element);
         removeNetwork(network);
@@ -47,7 +48,7 @@ public class ApplicationDataContainer {     //класс для манипуля
         try {
             parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            new CustomJaxbException(ProjectFinalsContainer.JAXB_EXCEPTION_MESSAGE).getMessage();
         }
     }
 
@@ -64,7 +65,7 @@ public class ApplicationDataContainer {     //класс для манипуля
         try {
             parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            new CustomJaxbException(ProjectFinalsContainer.JAXB_EXCEPTION_MESSAGE).getMessage();
         }
     }
 
@@ -77,7 +78,7 @@ public class ApplicationDataContainer {     //класс для манипуля
         try {
             parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            new CustomJaxbException(ProjectFinalsContainer.JAXB_EXCEPTION_MESSAGE).getMessage();
         }
     }
 
@@ -89,21 +90,22 @@ public class ApplicationDataContainer {     //класс для манипуля
         try {
             parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            new CustomJaxbException(ProjectFinalsContainer.JAXB_EXCEPTION_MESSAGE).getMessage();
         }
     }
 
     public void addPathFinder(RouteProvider provider, PathFinder pathFinder) {
-        if (!applicationData.routeProviders.contains(provider)){
+        if (!applicationData.routeProviders.contains(provider)) {
             return;
         }
         applicationData.routeProviders.remove(provider);
-        provider.pathFinder=pathFinder;
+        provider.pathFinder = pathFinder;
         applicationData.routeProviders.add(provider);
         try {
             parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
-            e.printStackTrace();
+
+            new CustomJaxbException(ProjectFinalsContainer.JAXB_EXCEPTION_MESSAGE).getMessage();
         }
     }
 
@@ -130,7 +132,7 @@ public class ApplicationDataContainer {     //класс для манипуля
         try {
             parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
-            e.printStackTrace();
+           new CustomJaxbException(ProjectFinalsContainer.JAXB_EXCEPTION_MESSAGE).getMessage();
         }
     }
 
@@ -139,7 +141,7 @@ public class ApplicationDataContainer {     //класс для манипуля
         try {
             parser.saveObject(new File(ProjectFinalsContainer.FILE_PATH), applicationData);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            new CustomJaxbException(ProjectFinalsContainer.JAXB_EXCEPTION_MESSAGE).getMessage();
         }
     }
 
@@ -147,7 +149,7 @@ public class ApplicationDataContainer {     //класс для манипуля
         try {
             applicationData = (ApplicationData) parser.getObject(new File(ProjectFinalsContainer.FILE_PATH), ApplicationData.class);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            new CustomJaxbException(ProjectFinalsContainer.JAXB_EXCEPTION_MESSAGE).getMessage();
         }
     }
 }

@@ -32,6 +32,9 @@ public class MinimalTimePathFinder extends PathFinder {
             usedMap.put(element.ID, false);
         }
 
+        if (startElement == null)
+            throw new RouteNotFoundException();
+
         dist.put(first, 0);
 
         for (PathElement element : network.pathElements) {

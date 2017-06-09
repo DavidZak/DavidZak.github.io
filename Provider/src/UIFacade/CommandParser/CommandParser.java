@@ -40,7 +40,7 @@ public class CommandParser {    //парсер введенной команды
     }
 
     public boolean checkIDRegExp(String string){        //проверка на соответствие ID
-        Pattern p = Pattern.compile("^[1-9]\\d*$");
+        Pattern p = Pattern.compile("^[0-9]\\d*$");
         Matcher m = p.matcher(string);
         return m.matches();
     }

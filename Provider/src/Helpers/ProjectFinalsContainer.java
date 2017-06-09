@@ -5,6 +5,8 @@ public class ProjectFinalsContainer {   //контейнер констант
     //Exceptions messages
     public final static String ROUTE_NOT_FOUND_EXCEPTION_MESSAGE = "Путь не найден";
     public final static String IO_EXCEPTION_MESSAGE = "При вводе данных произошла ошибка";
+    public final static String JAXB_EXCEPTION_MESSAGE = "При парсинге произошла ошибка";
+
 
     //File paths
     public static final String FILE_PATH = "data.xml";

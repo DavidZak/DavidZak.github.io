@@ -70,7 +70,7 @@ public class ApplicationFacade {
         try {
             route = provider.getRoute(firstID, secondID, network);
         } catch (RouteNotFoundException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         return route;
     }
@@ -80,7 +80,7 @@ public class ApplicationFacade {
         try {
             route = provider.getRoute(firstIP, secondIP, network);
         } catch (RouteNotFoundException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         return route;
     }

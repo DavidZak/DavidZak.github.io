@@ -3,6 +3,8 @@ package UIFacade;
 import ApplicationFacade.ApplicationFacade;
 import Helpers.ApplicationData.ApplicationDataContainer;
 import Helpers.ConnectionData;
+import Helpers.Exceptions.CustomIOException;
+import Helpers.Exceptions.CustomJaxbException;
 import Helpers.IPAddress;
 import Helpers.ProjectFinalsContainer;
 import Network.Network;
@@ -221,7 +223,8 @@ public class UIInputCommandHelper {
                     break;
                 case 1: {
                     pathElement = new Cable();
-                    readConnectionData(pathElement);
+                    if (network.pathElements.size() > 0)
+                        readConnectionData(pathElement);
                     ApplicationFacade facade = new ApplicationFacade(network, pathElement);
                     addPathElementCommand = new AddPathElementCommand(facade);
                     addPathElementCommand.execute();
@@ -230,7 +233,8 @@ public class UIInputCommandHelper {
                 break;
                 case 2: {
                     pathElement = new Hub();
-                    readConnectionData(pathElement);
+                    if (network.pathElements.size() > 0)
+                        readConnectionData(pathElement);
                     ApplicationFacade facade = new ApplicationFacade(network, pathElement);
                     addPathElementCommand = new AddPathElementCommand(facade);
                     addPathElementCommand.execute();
@@ -240,7 +244,8 @@ public class UIInputCommandHelper {
                 case 3: {
                     pathElement = new PC();
                     readIP(pathElement);
-                    readConnectionData(pathElement);
+                    if (network.pathElements.size() > 0)
+                        readConnectionData(pathElement);
                     ApplicationFacade facade = new ApplicationFacade(network, pathElement);
                     addPathElementCommand = new AddPathElementCommand(facade);
                     addPathElementCommand.execute();
@@ -250,7 +255,8 @@ public class UIInputCommandHelper {
                 case 4: {
                     pathElement = new FireWall();
                     readIP(pathElement);
-                    readConnectionData(pathElement);
+                    if (network.pathElements.size() > 0)
+                        readConnectionData(pathElement);
                     ApplicationFacade facade = new ApplicationFacade(network, pathElement);
                     addPathElementCommand = new AddPathElementCommand(facade);
                     addPathElementCommand.execute();
@@ -260,7 +266,8 @@ public class UIInputCommandHelper {
                 case 5: {
                     pathElement = new FireWall();
                     readIP(pathElement);
-                    readConnectionData(pathElement);
+                    if (network.pathElements.size() > 0)
+                        readConnectionData(pathElement);
                     ApplicationFacade facade = new ApplicationFacade(network, pathElement);
                     addPathElementCommand = new AddPathElementCommand(facade);
                     addPathElementCommand.execute();
@@ -270,7 +277,8 @@ public class UIInputCommandHelper {
                 case 6: {
                     pathElement = new Router();
                     readIP(pathElement);
-                    readConnectionData(pathElement);
+                    if (network.pathElements.size() > 0)
+                        readConnectionData(pathElement);
                     ApplicationFacade facade = new ApplicationFacade(network, pathElement);
                     addPathElementCommand = new AddPathElementCommand(facade);
                     addPathElementCommand.execute();
@@ -478,7 +486,7 @@ public class UIInputCommandHelper {
             inputString = reader.readLine();
             return inputString;
         } catch (IOException e) {
-
+            new CustomIOException().getMessage();
         }
         return null;
     }

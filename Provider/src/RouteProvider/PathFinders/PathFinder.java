@@ -42,11 +42,11 @@ public class PathFinder {       //базовый поисковик пути
     }
 
     public Route findPath(int first, int second, Network network) throws RouteNotFoundException {
-        return null;
+        throw new RouteNotFoundException();
     }
 
     public Route findPath(String first, String second, Network network) throws RouteNotFoundException {
-        return null;
+        throw new RouteNotFoundException();
     }
 
     LinkedHashSet<Integer> integers = new LinkedHashSet<>();
